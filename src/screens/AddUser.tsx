@@ -377,7 +377,7 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
              onChange={handleChange}
              inputProps={{ 'aria-label': 'controlled' }}
            />
-             <label>Subscribe to newsletter</label>
+             <label>I accept</label>
          </Grid>
 
          <Grid item xs={12} alignItems="left" >
