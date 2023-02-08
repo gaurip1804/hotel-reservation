@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import UserReservationContext from '../context/reservations';
 import {ICreateBooking} from '../interface/UserRoom';
 import { BookingModal } from '../components/BookingModal';
-import { DataGrid, GridActionsCell, GridRow, GridRowId, GridRowParams, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid,GridRowId,  } from '@mui/x-data-grid';
 import dataColumns from './../data/dataColumns';
 import {GridActionsCellItem, GridToolbarContainer }from '@mui/x-data-grid-pro';
  import AddIcon from '@mui/icons-material/Add';
@@ -48,9 +48,6 @@ import {GridActionsCellItem, GridToolbarContainer }from '@mui/x-data-grid-pro';
   const columns = arr;
   
 const [open, setOpen] = useState(false);
-const [userId, setUserId] = React.useState<number>(0); 
-
-
 
     const [userDetails, setUsers] = useState<ICreateBooking>()
 
@@ -65,6 +62,7 @@ const handleEditClick = (user:any) => {
    
    const handleDelete = (user:any) => { 
     deleteReservationById(user.row.id);
+    window.location.reload();
 }
  
    

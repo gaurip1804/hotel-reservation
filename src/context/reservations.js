@@ -17,25 +17,25 @@ function Provider({ children }) {
       ...newFormData,
     });
 
-    const updatedBooks = reservations.map((book) => {
-      if (book.id === id) {
-        return { ...book, ...response.data };
+    const updatedRecords = reservations.map((item) => {
+      if (item.id === id) {
+        return { ...item, ...response.data };
       }
 
-      return book;
+      return item;
     });
 
-    setReservations(updatedBooks);
+    setReservations(updatedRecords);
   };
 
   const deleteReservationById = async (id) => {
     await axios.delete(`http://localhost:3001/reservation/${id}`);
 
-    const updatedBooks = reservations.filter((book) => {
-      return book.id !== id;
+    const updatedRecords = reservations.filter((item) => {
+      return item.id !== id;
     });
 
-    setReservations(updatedBooks);
+    setReservations(updatedRecords);
   };
 
   const createReservation = async (formData) => {
@@ -43,8 +43,8 @@ function Provider({ children }) {
       ...formData,
     });
 
-    const updatedBooks = [...reservations, response.data];
-    setReservations(updatedBooks);
+    const updatedRecords = [...reservations, response.data];
+    setReservations(updatedRecords);
   };
 
 

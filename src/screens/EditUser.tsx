@@ -41,7 +41,8 @@
     ]);
   
    
-  
+    const [arrivalDate, setArrivalDate] = React.useState<string>(`${userDetails.stay.arrivalDate || new Date()}`);
+    const [departureDate, setDepartureDate] = React.useState<string>(`${userDetails.stay.departureDate || new Date()}`);
     const [userFirstName, setUserFirstName] = React.useState<string>(userDetails.firstName || ''); 
     const [userLastName, setUserLastName] = React.useState<string>(userDetails.lastName || '');
     const [userEmail, setUserEmail] = React.useState<string>(userDetails.email || '');
@@ -94,8 +95,8 @@
         handleSubmitEdit();
         formData={
                  "stay": {
-                   "arrivalDate": "2021-11-01T04:00:00.000Z",
-                   "departureDate": "2021-11-04T04:00:00.000Z"
+                   "arrivalDate": arrivalDate,
+                   "departureDate": departureDate,
                  },
                  "room": {
                    "roomSize": "presidential-suite",
@@ -129,6 +130,33 @@
       return(
         <form onSubmit={handleSubmit}>
           <Grid container display="row">
+          <Grid item xs={6} alignItems="left" >
+         <TextField
+        id="datetime-local"
+        label="Arrival Date"
+        type="datetime-local"
+        name="arrivalDate"
+        onChange={(e)=>setArrivalDate(e.target.value)}
+        defaultValue={arrivalDate}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+      </Grid>
+      <Grid item xs={6} alignItems="left" >
+         <TextField
+        id="datetime-local"
+        label="deparure Date"
+        type="datetime-local"
+        name="departureDate"
+        onChange={(e)=>setDepartureDate(e.target.value)}
+        
+        defaultValue={departureDate}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+      </Grid>
             <Grid item xs={6} alignItems="left" >
               <FormControl>
                 <InputLabel variant="standard" htmlFor="uncontrolled-native">
