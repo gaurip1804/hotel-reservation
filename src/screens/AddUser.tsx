@@ -41,7 +41,7 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
    const [userZipcode, setUserZipcode] = React.useState<string>('');
    const [userCity, setUserCity] = React.useState<string>('');
   
-   const [extraName, setExtraName] = React.useState<string[]>();
+   const [extraName, setExtraName] = React.useState<string[]>([]);
    const [payMode, setPayMode] = React.useState('cc');
    const [reminder, setReminder] = React.useState(true);
    const [newsletter, setNewsletter] = React.useState(true);
@@ -277,7 +277,7 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
            </Grid> 
            
           
-           {/* <Grid item xs={12} alignItems="left" >
+           <Grid item xs={12} alignItems="left" >
              <FormControl sx={{ m: 1, width: 300 }}>
                <InputLabel id="extras-label">Extras</InputLabel>
                <Select
@@ -298,7 +298,7 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
                  ))}
                </Select>
              </FormControl>
-           </Grid> */}
+           </Grid>
 
 
          <Grid item xs={12} alignItems="left" >
