@@ -2,12 +2,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import UserReservationContext from '../context/reservations';
 import {ICreateBooking} from '../interface/UserRoom';
 import { BookingModal } from '../components/BookingModal';
-import { DataGrid, GridRowId, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid, GridRowId, GridRowParams, GridToolbar } from '@mui/x-data-grid';
 import dataColumns from './../data/dataColumns';
-import {GridActionsCellItem, GridRowModes,DataGridPro }from '@mui/x-data-grid-pro';
-// import AddIcon from '@mui/icons-material/Add';
+import {GridActionsCellItem, GridToolbarContainer }from '@mui/x-data-grid-pro';
+ import AddIcon from '@mui/icons-material/Add';
  import EditIcon from '@mui/icons-material/Edit';
  import DeleteIcon from '@mui/icons-material/DeleteOutlined';
+ import Button from '@mui/material/Button';
 
 
  let arr:any[] = [];
@@ -80,7 +81,8 @@ const [userId, setUserId] = React.useState<number>(0);
         renderBooks(user.id);
    }
  
-   const renderBooks = (id:number) => {     reservations.map((item:any) => {
+   const renderBooks = (id:number) => {     
+    reservations.map((item:any) => {
        if(id === item.id){
           setUsers(item);
           setOpen(true);
@@ -88,10 +90,20 @@ const [userId, setUserId] = React.useState<number>(0);
    });
    }
    
+   const EditToolbar = () => {
+    return (
+      <GridToolbarContainer>
+        <Button color="primary" startIcon={<AddIcon />} >
+          Add record
+        </Button>
+      </GridToolbarContainer>
+    );
+  }
     return(
        <>  
-    
+    <div style={{height : 100, background:'#F8A756', paddingTop: 30}}><h3>Reservation System</h3></div>
     <div style={{ height: 400, width: '100%' }}>
+    
       <DataGrid
         rows={rows}
         columns={columns}
@@ -100,7 +112,7 @@ const [userId, setUserId] = React.useState<number>(0);
         rowsPerPageOptions={[5]}
         checkboxSelection
         disableSelectionOnClick
-        components={{ Toolbar: GridToolbar }}
+        components={{ Toolbar: EditToolbar }}
    
       />
     </div>
