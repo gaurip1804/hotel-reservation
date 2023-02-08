@@ -14,15 +14,12 @@ import EditUser from "../screens/EditUser";
 type TReview = {
   open : boolean
   handleClose(): void
-  userId:number | null
-  userDetails:ICreateBooking
-  handleSubmitEdit(): void
+  userDetails:ICreateBooking | undefined
 }
 
 
 
-export const BookingModal:React.FC<TReview> = ({open, handleClose, handleSubmitEdit, userId, userDetails }) => {
-
+export const BookingModal:React.FC<TReview> = ({open, handleClose, userDetails }) => {
   return (
     <Modal
       open={open}
@@ -35,7 +32,9 @@ export const BookingModal:React.FC<TReview> = ({open, handleClose, handleSubmitE
         
 
         {/* <UserInfo {...userDetails} /> */}
-        <EditUser handleSubmitEdit = {handleClose} userDetails = {userDetails} />
+    {userDetails ? <EditUser handleSubmitEdit = {handleClose} userDetails = {userDetails} /> : 'Loading Data'}
+
+  
          
         
       </Box>

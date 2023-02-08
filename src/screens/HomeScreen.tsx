@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import UserReservationContext from '../context/reservations';
 import {ICreateBooking} from '../interface/UserRoom';
 import { BookingModal } from '../components/BookingModal';
-import { DataGrid, GridRowId, GridRowParams, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid, GridActionsCell, GridRow, GridRowId, GridRowParams, GridToolbar } from '@mui/x-data-grid';
 import dataColumns from './../data/dataColumns';
 import {GridActionsCellItem, GridToolbarContainer }from '@mui/x-data-grid-pro';
  import AddIcon from '@mui/icons-material/Add';
@@ -14,6 +14,7 @@ import {GridActionsCellItem, GridToolbarContainer }from '@mui/x-data-grid-pro';
  let arr:any[] = [];
 
  const HomeScreen: React.FC = () => {
+  const { reservations } =  useContext(UserReservationContext);
  
   const abc =  {
     field: 'actions',
@@ -52,48 +53,24 @@ const [userId, setUserId] = React.useState<number>(0);
 
 
     const [userDetails, setUsers] = useState<ICreateBooking>()
-    // const [firstName, setFirstName] = useState('')
-    // const [lastName, setLastName] = useState('')
-    // const [email, setEmail] = useState('')
-     const [showEdit, setShowEdit] = useState(false);
-    const { fetchAllReservations, reservations } =  useContext(UserReservationContext);
 
-  useEffect(() => {
-    fetchAllReservations();
-  }, [fetchAllReservations]);
-
-  const rows = reservations;
-    
-  const handleOpen = () =>  {setOpen(true); }
   const handleClose = () => {setOpen(false); }
- ;
-    const handleSubmit = (e: React.FormEvent) =>{
-        e.preventDefault();
-       // renderBooks();
-    }
-
-    const handleSubmitEdit = () => {
-        setShowEdit(false);
-      };
-
+ 
       
-      const handleEditClick = (user:any) => {
-        renderBooks(user.id);
+      const handleEditClick = (user:any) => { 
+        setUsers(user.row);
+        setOpen(true);
    }
  
-   const renderBooks = (id:number) => {     
-    reservations.map((item:any) => {
-       if(id === item.id){
-          setUsers(item);
-          setOpen(true);
-       }
-   });
-   }
    
    const EditToolbar = () => {
+    const handleClick = () => {
+      setUsers(undefined)
+      setOpen(true)
+    }
     return (
       <GridToolbarContainer>
-        <Button color="primary" startIcon={<AddIcon />} >
+        <Button color="primary" startIcon={<AddIcon />} onClick = {handleClick}>
           Add record
         </Button>
       </GridToolbarContainer>
@@ -104,22 +81,22 @@ const [userId, setUserId] = React.useState<number>(0);
     <div style={{height : 100, background:'#F8A756', paddingTop: 30}}><h3>Reservation System</h3></div>
     <div style={{ height: 400, width: '100%' }}>
     
-      <DataGrid
-        rows={rows}
+     {reservations && 
+     <DataGrid
+        rows={reservations}
         columns={columns}
-        editMode="row"
         pageSize={5}
         rowsPerPageOptions={[5]}
         checkboxSelection
-        disableSelectionOnClick
-        components={{ Toolbar: EditToolbar }}
-   
-      />
+        components={{ Toolbar: EditToolbar} }
+      /> }
     </div>
+ 
  <div>
-    {open && userDetails && <BookingModal open={open} handleClose={handleClose} handleSubmitEdit={handleSubmitEdit} userId={userId}  userDetails = {userDetails}/>}
+  
+    {open && <BookingModal open={open} handleClose={handleClose} userDetails = {userDetails}/>}
     </div>
-    
+   
     </>
     )
 };
