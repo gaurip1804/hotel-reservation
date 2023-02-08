@@ -1,10 +1,15 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Used Hooks like useContext and useCallBack to perform operations.
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm run server`
+
+To start your server on local machine. Data is stored in Json file.
 
 ### `npm start`
 
