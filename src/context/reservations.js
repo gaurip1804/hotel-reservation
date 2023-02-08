@@ -1,15 +1,15 @@
 import { createContext, useState, useCallback } from 'react';
 import axios from 'axios';
 
-const BooksContext = createContext();
+const UserReservationContext = createContext();
 
 function Provider({ children }) {
-     const [books, setBooks] = useState([]);
+     const [reservations, setReservations] = useState([]);
      const [userDet, setUserDetails] = useState([]);
 
-    const fetchBooks = useCallback(async () => {
+    const fetchAllReservations = useCallback(async () => {
     const response = await axios.get('http://localhost:3001/reservation');
-      setBooks(response.data);
+    setReservations(response.data);
   }, []);
 
   const editUserReservationById = async (id, newFormData) => {
@@ -17,7 +17,7 @@ function Provider({ children }) {
       ...newFormData,
     });
 
-    const updatedBooks = books.map((book) => {
+    const updatedBooks = reservations.map((book) => {
       if (book.id === id) {
         return { ...book, ...response.data };
       }
@@ -25,30 +25,30 @@ function Provider({ children }) {
       return book;
     });
 
-    setBooks(updatedBooks);
+    setReservations(updatedBooks);
   };
 
-  const deleteBookById = async (id) => {
+  const deleteReservationById = async (id) => {
     await axios.delete(`http://localhost:3001/books/${id}`);
 
-    const updatedBooks = books.filter((book) => {
+    const updatedBooks = reservations.filter((book) => {
       return book.id !== id;
     });
 
-    setBooks(updatedBooks);
+    setReservations(updatedBooks);
   };
 
-  const createBook = async (title) => {
+  const createReservation = async (title) => {
     const response = await axios.post('http://localhost:3001/books', {
       title,
     });
 
-    const updatedBooks = [...books, response.data];
-    setBooks(updatedBooks);
+    const updatedBooks = [...reservations, response.data];
+    setReservations(updatedBooks);
   };
 
 
-  const searchBookById = useCallback(async (id) => {
+  const searchUserReservationById = useCallback(async (id) => {
     const response = await axios.get(`http://localhost:3001/reservation`);
 
      response.data.map((item) => {
@@ -62,19 +62,19 @@ function Provider({ children }) {
 
 
   const valueToShare = {
-  	books,
+  	reservations,
     userDet,
-  	deleteBookById,
+  	deleteReservationById,
   	editUserReservationById,
-  	createBook,
-  	fetchBooks,
-    searchBookById,
+  	createReservation,
+  	fetchAllReservations,
+    searchUserReservationById,
   }
 
-    return <BooksContext.Provider value={valueToShare}>
+    return <UserReservationContext.Provider value={valueToShare}>
         { children }
-    </BooksContext.Provider>
+    </UserReservationContext.Provider>
 }
 
 export { Provider };
-export default BooksContext;
+export default UserReservationContext;

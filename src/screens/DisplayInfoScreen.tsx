@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import {
     Container,
     Table,
@@ -9,17 +9,9 @@ import {
     TableRow,
     Button
   } from "@mui/material";
- 
-  import {ICreateBooking} from '../interface/UserRoom';
 
-  // type userTabDataType = {
-  //   userTabData :any [],
-  // }
 
 const DisplayInfoScreen:React.FC<any> = ({handleOpen, handleClose, ...userDetails}) => {
-  
-
-  
         return(
             <>
             <Container maxWidth={"lg"}

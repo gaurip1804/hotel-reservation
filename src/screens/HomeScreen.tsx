@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import BooksContext from '../context/users';
+import UserReservationContext from '../context/reservations';
 import {
     TextField,Button
 } from '@mui/material';
@@ -22,10 +22,10 @@ const [userId, setUserId] = React.useState<number>(0);
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [showEdit, setShowEdit] = useState(false);
-    const { fetchBooks, books } =  useContext(BooksContext);
+    const { fetchAllReservations, reservations } =  useContext(UserReservationContext);
 
     const renderBooks = () => {
-        books.map((item:any) => {
+        reservations.map((item:any) => {
              if(email === item.email){
                 setUsers(item);
                 
@@ -34,8 +34,8 @@ const [userId, setUserId] = React.useState<number>(0);
       };
 
   useEffect(() => {
-    fetchBooks();
-  }, [fetchBooks]);
+    fetchAllReservations();
+  }, [fetchAllReservations]);
 
     
   const handleOpen = () =>  {setOpen(true); }

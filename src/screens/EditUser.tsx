@@ -1,5 +1,5 @@
  import React, { useContext, useEffect, useState } from "react";
- import BooksContext from '../context/users';
+ import UserReservationContext from '../context/reservations';
  import "react-date-range/dist/styles.css"; //
  import "react-date-range/dist/theme/default.css";
  import {
@@ -32,7 +32,7 @@
  }
  const EditUser:React.FC<editInterface> = ({handleSubmitEdit, userDetails }) => {
 
-    const { editUserReservationById } =  useContext(BooksContext);
+    const { editUserReservationById } =  useContext(UserReservationContext);
 
     const [dates, setDates] = useState([
       {
