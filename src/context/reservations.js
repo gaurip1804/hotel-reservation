@@ -29,7 +29,7 @@ function Provider({ children }) {
   };
 
   const deleteReservationById = async (id) => {
-    await axios.delete(`http://localhost:3001/books/${id}`);
+    await axios.delete(`http://localhost:3001/reservation/${id}`);
 
     const updatedBooks = reservations.filter((book) => {
       return book.id !== id;
@@ -38,9 +38,9 @@ function Provider({ children }) {
     setReservations(updatedBooks);
   };
 
-  const createReservation = async (title) => {
-    const response = await axios.post('http://localhost:3001/books', {
-      title,
+  const createReservation = async (formData) => {
+    const response = await axios.post('http://localhost:3001/reservation', {
+      ...formData,
     });
 
     const updatedBooks = [...reservations, response.data];

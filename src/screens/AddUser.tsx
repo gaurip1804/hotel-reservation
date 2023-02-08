@@ -29,7 +29,7 @@ type editInterface = {
 }
 const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
 
-   const { editUserReservationById } =  useContext(UserReservationContext);
+   const { createReservation } =  useContext(UserReservationContext);
  
    const [userFirstName, setUserFirstName] = React.useState<string>(''); 
    const [userLastName, setUserLastName] = React.useState<string>('');
@@ -79,8 +79,7 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
      const handleSubmit = (event:React.FormEvent) => {
        let formData={};
        event.preventDefault();
-   
-       handleSubmitEdit();
+       
        formData={
                 "stay": {
                   "arrivalDate": "2021-11-01T04:00:00.000Z",
@@ -92,7 +91,7 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
                 },
                 "firstName": userFirstName,
                 "lastName": userLastName,
-                "email": "idm.op@idm.com",
+                "email": userEmail,
                 "phone": userMobNum,
                 "addressStreet": {
                   "streetName": userStreet,
@@ -100,7 +99,7 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
                 },
                 "addressLocation": {
                   "zipCode": userZipcode,
-                  "state": "Arkansas",
+                  "state": state,
                   "city": userCity
                 },
                 "extras": extras.map(extra=> extra.value),
@@ -112,7 +111,8 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
                 "confirm": confirm
                }
        
-       //editUserReservationById(userDetails.id, formData);
+               createReservation(formData);
+               handleSubmitEdit();
      };
 
      return(
@@ -215,7 +215,7 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
                    id="zip"
                    name="zip"
                    label="Zip Code"
-                   type="number"
+                   type="string"
                    variant="standard"
                    value={userZipcode}
                    onChange={(e) => setUserZipcode(e.target.value)}

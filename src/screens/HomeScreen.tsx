@@ -14,7 +14,7 @@ import {GridActionsCellItem, GridToolbarContainer }from '@mui/x-data-grid-pro';
  let arr:any[] = [];
 
  const HomeScreen: React.FC = () => {
-  const { reservations } =  useContext(UserReservationContext);
+  const { reservations, deleteReservationById } =  useContext(UserReservationContext);
  
   const abc =  {
     field: 'actions',
@@ -36,7 +36,7 @@ import {GridActionsCellItem, GridToolbarContainer }from '@mui/x-data-grid-pro';
         <GridActionsCellItem
           icon={<DeleteIcon />}
           label="Delete"
-        // onClick={()=>alert(id)}
+         onClick={()=>handleDelete(user)}
           color="inherit"
         />,
       ]
@@ -57,10 +57,15 @@ const [userId, setUserId] = React.useState<number>(0);
   const handleClose = () => {setOpen(false); }
  
       
-      const handleEditClick = (user:any) => { 
+const handleEditClick = (user:any) => { 
         setUsers(user.row);
         setOpen(true);
    }
+
+   
+   const handleDelete = (user:any) => { 
+    deleteReservationById(user.row.id);
+}
  
    
    const EditToolbar = () => {
