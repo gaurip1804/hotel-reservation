@@ -1,4 +1,4 @@
- import React, { useContext, useEffect, useState } from "react";
+ import React, { useContext, useState } from "react";
  import UserReservationContext from '../context/reservations';
  import {
    FormControl,
@@ -32,14 +32,6 @@
 
     const { editUserReservationById } =  useContext(UserReservationContext);
 
-    const [dates, setDates] = useState([
-      {
-        startDate: new Date(),
-        endDate: null, 
-        key: "selection",
-      },
-    ]);
-  
    
     const [arrivalDate, setArrivalDate] = React.useState<string>(`${userDetails.stay.arrivalDate || new Date()}`);
     const [departureDate, setDepartureDate] = React.useState<string>(`${userDetails.stay.departureDate || new Date()}`);

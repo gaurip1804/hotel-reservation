@@ -1,12 +1,10 @@
 import React from "react";
-
 import {
   Modal,
   Box,
 } from "@mui/material";
 import { bookModalStyle } from "./../helpers/styles";
 import {ICreateBooking} from '../interface/UserRoom';
-//import UserInfo from './../screens/UserInfo';
 import EditUser from "../screens/EditUser";
 import AddUser from "../screens/AddUser";
 
@@ -30,14 +28,8 @@ export const BookingModal:React.FC<TReview> = ({open, handleClose, userDetails }
       style={{ overflow: 'scroll' }}
     >
       <Box sx={bookModalStyle}>
-        
-
-        {/* <UserInfo {...userDetails} /> */}
     {userDetails ? <EditUser handleSubmitEdit = {handleClose} userDetails = {userDetails} /> :
      <AddUser handleSubmitEdit = {handleClose} />}
-
-  
-         
         
       </Box>
     </Modal>

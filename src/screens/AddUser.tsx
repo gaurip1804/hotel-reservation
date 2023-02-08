@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext} from "react";
 import UserReservationContext from '../context/reservations';
 import {
   FormControl,
@@ -18,7 +18,6 @@ import {
   Checkbox,
 } from "@mui/material";
 import { Grid, SelectChangeEvent} from "@mui/material";
-import {ICreateBooking} from '../interface/UserRoom';
 import Countries from './../data/states';
 import extras from './../data/extras';
 import hotelTags from './../data/hotelTags';
