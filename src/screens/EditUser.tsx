@@ -1,7 +1,5 @@
  import React, { useContext, useEffect, useState } from "react";
  import UserReservationContext from '../context/reservations';
- import "react-date-range/dist/styles.css"; //
- import "react-date-range/dist/theme/default.css";
  import {
    FormControl,
    InputLabel,
