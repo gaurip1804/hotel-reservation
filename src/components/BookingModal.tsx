@@ -8,6 +8,7 @@ import { bookModalStyle } from "./../helpers/styles";
 import {ICreateBooking} from '../interface/UserRoom';
 //import UserInfo from './../screens/UserInfo';
 import EditUser from "../screens/EditUser";
+import AddUser from "../screens/AddUser";
 
 
 
@@ -32,7 +33,8 @@ export const BookingModal:React.FC<TReview> = ({open, handleClose, userDetails }
         
 
         {/* <UserInfo {...userDetails} /> */}
-    {userDetails ? <EditUser handleSubmitEdit = {handleClose} userDetails = {userDetails} /> : 'Loading Data'}
+    {userDetails ? <EditUser handleSubmitEdit = {handleClose} userDetails = {userDetails} /> :
+     <AddUser handleSubmitEdit = {handleClose} />}
 
   
          
