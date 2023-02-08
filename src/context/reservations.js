@@ -48,17 +48,17 @@ function Provider({ children }) {
   };
 
 
-  const searchUserReservationById = useCallback(async (id) => {
+  const searchUserReservationById = async (id) => {
     const response = await axios.get(`http://localhost:3001/reservation`);
-
      response.data.map((item) => {
       if (item.id === id) {
         setUserDetails(item);
+        return item;
       }
       return item;
     });
     
-  },[]);
+  };
 
 
   const valueToShare = {

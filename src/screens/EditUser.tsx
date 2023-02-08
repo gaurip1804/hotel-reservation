@@ -92,7 +92,6 @@
         event.preventDefault();
     
         handleSubmitEdit();
-console.log("userFirstName..",userFirstName)
         formData={
                  "stay": {
                    "arrivalDate": "2021-11-01T04:00:00.000Z",

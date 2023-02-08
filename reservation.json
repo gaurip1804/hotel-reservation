@@ -1,18 +1,17 @@
 {
   "reservation": [
     {
-      "id": 1,
       "stay": {
-        "arrivalDate": "2021-11-18T05:00:00.000Z",
-        "departureDate": "2021-11-25T05:00:00.000Z"
+        "arrivalDate": "2021-11-01T04:00:00.000Z",
+        "departureDate": "2021-11-04T04:00:00.000Z"
       },
       "room": {
-        "roomSize": "business-suite",
-        "roomQuantity": 3
+        "roomSize": "presidential-suite",
+        "roomQuantity": 2
       },
       "firstName": "IDM",
-      "lastName": "ENG",
-      "email": "idm.test@idm.com",
+      "lastName": "ENGG",
+      "email": "idm.op@idm.com",
       "phone": "9999999999",
       "addressStreet": {
         "streetName": "IDM Street",
@@ -20,26 +19,29 @@
       },
       "addressLocation": {
         "zipCode": "123456",
-        "state": "Arizona",
+        "state": "Arkansas",
         "city": "OAKVILLE"
       },
       "extras": [
+        "extraParking",
+        "extraBalcony",
         "extraBreakfast",
         "extraTV",
-        "extraWiFi",
-        "extraParking",
-        "extraBalcony"
+        "extraWiFi"
       ],
       "payment": "cc",
       "note": "idm lab test",
       "tags": [
         "hotel",
         "booking",
-        "labtest"
+        "labtest",
+        "angular",
+        "material"
       ],
       "reminder": true,
       "newsletter": true,
-      "confirm": false
+      "confirm": true,
+      "id": 1
     },
     {
       "stay": {
@@ -50,7 +52,7 @@
         "roomSize": "presidential-suite",
         "roomQuantity": 2
       },
-      "firstName": "IDMm",
+      "firstName": "IDM",
       "lastName": "PM",
       "email": "idm.op@idm.com",
       "phone": "123456789",
