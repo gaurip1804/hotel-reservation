@@ -73,7 +73,7 @@ const handleEditClick = (user:any) => {
     }
     return (
       <GridToolbarContainer>
-        <Button color="primary" startIcon={<AddIcon />} onClick = {handleClick}>
+        <Button color="primary" startIcon={<AddIcon />} onClick = {handleClick} data-testid="trigger-me-in-jest">
           Add record
         </Button>
       </GridToolbarContainer>

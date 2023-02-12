@@ -27,7 +27,7 @@ export const BookingModal:React.FC<TReview> = ({open, handleClose, userDetails }
       aria-describedby="modal-modal-description"
       style={{ overflow: 'scroll' }}
     >
-      <Box sx={bookModalStyle}>
+      <Box sx={bookModalStyle} data-testid="find-me-in-jest">
     {userDetails ? <EditUser handleSubmitEdit = {handleClose} userDetails = {userDetails} /> :
      <AddUser handleSubmitEdit = {handleClose} />}
         

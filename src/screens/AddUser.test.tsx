@@ -1,6 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import  AddUser  from './AddUser';
+import { Provider } from './../context/reservations';
+import '@testing-library/jest-dom'
 
 
 
@@ -10,8 +12,8 @@ import  AddUser  from './AddUser';
   };
 
 test('Test submit', () => {
-    render(<AddUser {...props} />);
-    const linkElement = screen.getByText(/learn react/i);
+    render(<Provider><AddUser {...props} /></Provider>);
+    const linkElement = screen.getByText('Save');
     expect(linkElement).toBeInTheDocument();
   });
 
