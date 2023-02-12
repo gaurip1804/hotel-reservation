@@ -13,13 +13,6 @@
       editable: true,
     },
     {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
-      width: 110,
-      editable: true,
-    },
-    {
       field:'email',
       headerName: 'Email',
       description: 'Email',
