@@ -28,7 +28,7 @@ function Provider({ children }) {
 
     const updatedRecords = reservations.map((item) => {
       if (item.id === id) {
-        return { ...item, ...data1 };
+        return {...data1 };
       }
 
       return item;

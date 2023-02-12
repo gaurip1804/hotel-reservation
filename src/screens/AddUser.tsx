@@ -7,7 +7,6 @@ import {
   MenuItem,
   Button,
   TextField,
-  NativeSelect,
   Autocomplete,
   OutlinedInput,
   Radio,
@@ -29,7 +28,9 @@ type editInterface = {
 const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
 
    const { createReservation } =  useContext(UserReservationContext);
- 
+
+   const [roomSize,setRoomSize] = React.useState<string>('');
+   const [roomQuantity,setRoomQuantity] = React.useState<number>(1); 
    const [arrivalDate, setArrivalDate] = React.useState<string>(`${new Date()}`);
    const [departureDate, setDepartureDate] = React.useState<string>(`${new Date()}`);
    const [userFirstName, setUserFirstName] = React.useState<string>(''); 
@@ -38,10 +39,8 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
    const [userMobNum, setUserMobNum] = React.useState<string>('');
    const [userStreet, setUserStreet] = React.useState<string>('');
    const [userStreetNum, setUserStreetNum] = React.useState<number>(0);
- 
    const [userZipcode, setUserZipcode] = React.useState<string>('');
    const [userCity, setUserCity] = React.useState<string>('');
-  
    const [extraName, setExtraName] = React.useState<string[]>([]);
    const [payMode, setPayMode] = React.useState('cc');
    const [reminder, setReminder] = React.useState(true);
@@ -50,11 +49,14 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
    const [state, setState] = React.useState(Countries[0].label || null);
    const [inputValue, setInputValue] = React.useState('');
    const [note, setNote] = React.useState<string>(''); 
+   const [tags, setTags] = React.useState<string[]>([]);
 
    const handleChangeExtra = (event: SelectChangeEvent<typeof extraName>) => {
        const {
          target: { value },
        } = event;
+
+      console.log("val..", value)
        setExtraName(
          // On autofill we get a stringified value.
          typeof value === 'string' ? value.split(',') : value,
@@ -77,51 +79,69 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
        setConfirm(event.target.checked);
      };
 
-     const handleSubmit = (event:React.FormEvent) => {
-       let formData={};
-       event.preventDefault();
-       
-       formData={
-                "stay": {
-                  "arrivalDate": arrivalDate,
-                  "departureDate": departureDate,
-                },
-                "room": {
-                  "roomSize": "presidential-suite",
-                  "roomQuantity": 2
-                },
-                "firstName": userFirstName,
-                "lastName": userLastName,
-                "email": userEmail,
-                "phone": userMobNum,
-                "addressStreet": {
-                  "streetName": userStreet,
-                  "streetNumber": userStreetNum
-                },
-                "addressLocation": {
-                  "zipCode": userZipcode,
-                  "state": state,
-                  "city": userCity
-                },
-                "extras": extras.map(extra=> extra.value),
-                "payment": payMode,
-                "note": note,
-                "tags":hotelTags ,
-                "reminder": reminder,
-                "newsletter": newsletter,
-                "confirm": confirm
-               }
-       
-               createReservation(formData);
-               handleSubmitEdit();
-     };
+    
 
+     const handleChangeRoom = (event: SelectChangeEvent) => {
+      setRoomSize(event.target.value as string);
+    };
+
+ 
+    const handleTagChange = (event: SelectChangeEvent<typeof tags>) => {
+      const {
+        target: { value },
+      } = event;
+
+     console.log("val..", value)
+      setTags(
+        // On autofill we get a stringified value.
+        typeof value === 'string' ? value.split(',') : value,
+      );
+    };
+
+    const handleSubmit = (event:React.FormEvent) => {
+      let formData={};
+      event.preventDefault();
+      
+      formData={
+               "stay": {
+                 "arrivalDate": arrivalDate,
+                 "departureDate": departureDate,
+               },
+               "room": {
+                 "roomSize": roomSize,
+                 "roomQuantity": roomQuantity
+               },
+               "firstName": userFirstName,
+               "lastName": userLastName,
+               "email": userEmail,
+               "phone": userMobNum,
+               "addressStreet": {
+                 "streetName": userStreet,
+                 "streetNumber": userStreetNum
+               },
+               "addressLocation": {
+                 "zipCode": userZipcode,
+                 "state": state,
+                 "city": userCity
+               },
+               "extras": extraName,
+               "payment": payMode,
+               "note": note,
+               "tags":hotelTags ,
+               "reminder": reminder,
+               "newsletter": newsletter,
+               "confirm": confirm
+              }
+      
+              createReservation(formData);
+              handleSubmitEdit();
+    };
      return(
        <form onSubmit={handleSubmit}>
          <Grid container display="row">
          <Grid item xs={6} alignItems="left" >
          <TextField
-        id="datetime-local"
+        id="arrival-datetime-local"
         label="Arrival Date"
         type="datetime-local"
         name="arrivalDate"
@@ -131,37 +151,36 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
           shrink: true,
         }}
       />
-      </Grid>
-      <Grid item xs={6} alignItems="left" >
-         <TextField
-        id="datetime-local"
-        label="deparure Date"
-        type="datetime-local"
-        name="departureDate"
-        onChange={(e)=>setDepartureDate(e.target.value)}
-        
-        defaultValue={Date()}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-      </Grid>
+          </Grid>
+          <Grid item xs={6} alignItems="left" >
+            <TextField
+            id="departure-datetime-local"
+            label="deparure Date"
+            type="datetime-local"
+            name="departureDate"
+            onChange={(e)=>setDepartureDate(e.target.value)}
+            defaultValue={Date()}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          </Grid>
            <Grid item xs={6} alignItems="left" >
              <FormControl>
                <InputLabel variant="standard" htmlFor="uncontrolled-native">
                  Room Size
                </InputLabel>
-               <NativeSelect
-                 defaultValue={10}
-                 inputProps={{
-                   name: 'roomSize',
-                   id: 'uncontrolled-native',
-                 }}
+               <Select
+                  id="demo-simple-select"
+                  label="Select"
+                  value={roomSize}
+                  onChange={handleChangeRoom}
+                  style={{width:'240px'}}
                >
-                 <option value={10}>Business Suite</option>
-                 <option value={20}>Presidential Suite</option>
-                 <option value={30}>Family Suite</option>
-               </NativeSelect>
+                 <MenuItem value='business-suite'>Business Suite</MenuItem>
+                 <MenuItem value='presidential-suite'>Presidential Suite</MenuItem>
+                 <MenuItem value='family-suite'>Family Suite</MenuItem>
+               </Select>
              </FormControl>
            </Grid>
 
@@ -172,6 +191,8 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
                    label="Room Quantity"
                    type="number"
                    variant="standard"
+                   value={roomQuantity}
+                   onChange={(e) => setRoomQuantity(parseInt(e.target.value))}
                    />
            </Grid>
            <Grid item xs={12} alignItems="left" >
@@ -375,6 +396,7 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
                      placeholder="Favorites"
                    />
                  )}
+                 
                />
            </Stack>
          </Grid>

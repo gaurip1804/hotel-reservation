@@ -2,15 +2,15 @@
   "reservation": [
     {
       "stay": {
-        "arrivalDate": "2021-11-01T04:00:00.000Z",
-        "departureDate": "2021-11-04T04:00:00.000Z"
+        "arrivalDate": "2021-11-01T04:00",
+        "departureDate": "2021-11-04T04:00"
       },
       "room": {
         "roomSize": "presidential-suite",
         "roomQuantity": 2
       },
       "firstName": "IDM",
-      "lastName": "ENGG",
+      "lastName": "ENG",
       "email": "idm.op@idm.com",
       "phone": "9999999999",
       "addressStreet": {
@@ -23,8 +23,6 @@
         "city": "OAKVILLE"
       },
       "extras": [
-        "extraParking",
-        "extraBalcony",
         "extraBreakfast",
         "extraTV",
         "extraWiFi"
@@ -45,8 +43,8 @@
     },
     {
       "stay": {
-        "arrivalDate": "2021-11-01T04:00:00.000Z",
-        "departureDate": "2021-11-04T04:00:00.000Z"
+        "arrivalDate": "2021-11-01T04:00",
+        "departureDate": "2021-11-04T04:00"
       },
       "room": {
         "roomSize": "presidential-suite",
@@ -85,6 +83,88 @@
       "newsletter": false,
       "confirm": true,
       "id": 2
+    },
+    {
+      "stay": {
+        "arrivalDate": "2023-02-15T19:29",
+        "departureDate": "2023-02-17T20:29"
+      },
+      "room": {
+        "roomSize": "business-suite",
+        "roomQuantity": 4
+      },
+      "firstName": "gg",
+      "lastName": "gg",
+      "email": "idm.op@idm.com",
+      "phone": "675436899",
+      "addressStreet": {
+        "streetName": "hhgh",
+        "streetNumber": 3434
+      },
+      "addressLocation": {
+        "zipCode": "4545356668",
+        "state": "Arkansas",
+        "city": "hh"
+      },
+      "extras": [
+        "extraBreakfast",
+        "extraTV",
+        "extraWiFi"
+      ],
+      "payment": "bitcoin",
+      "note": "JJ",
+      "tags": [
+        "hotel",
+        "booking",
+        "labtest",
+        "angular",
+        "material"
+      ],
+      "reminder": true,
+      "newsletter": true,
+      "confirm": true,
+      "id": 3
+    },
+    {
+      "stay": {
+        "arrivalDate": "2023-02-12T15:57",
+        "departureDate": "2023-02-27T15:56"
+      },
+      "room": {
+        "roomSize": "family-suite",
+        "roomQuantity": 2
+      },
+      "firstName": "kk",
+      "lastName": "kk",
+      "email": "idm.op@idm.com",
+      "phone": "76545666",
+      "addressStreet": {
+        "streetName": "6565",
+        "streetNumber": 55
+      },
+      "addressLocation": {
+        "zipCode": "t5t5t",
+        "state": "Arkansas",
+        "city": "htgt"
+      },
+      "extras": [
+        "extraParking",
+        "extraTV",
+        "extraBreakfast"
+      ],
+      "payment": "payPal",
+      "note": "ss",
+      "tags": [
+        "hotel",
+        "booking",
+        "labtest",
+        "angular",
+        "material"
+      ],
+      "reminder": true,
+      "newsletter": true,
+      "confirm": false,
+      "id": 4
     }
   ]
 }

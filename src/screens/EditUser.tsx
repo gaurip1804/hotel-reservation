@@ -32,7 +32,8 @@
 
     const { editUserReservationById } =  useContext(UserReservationContext);
 
-   
+    const [roomSize,setRoomSize] = React.useState<string>(userDetails.room.roomSize || '');
+   const [roomQuantity,setRoomQuantity] = React.useState<number>(userDetails.room.roomQuantity || 1); 
     const [arrivalDate, setArrivalDate] = React.useState<string>(`${userDetails.stay.arrivalDate || new Date()}`);
     const [departureDate, setDepartureDate] = React.useState<string>(`${userDetails.stay.departureDate || new Date()}`);
     const [userFirstName, setUserFirstName] = React.useState<string>(userDetails.firstName || ''); 
@@ -91,8 +92,8 @@
                    "departureDate": departureDate,
                  },
                  "room": {
-                   "roomSize": "presidential-suite",
-                   "roomQuantity": 2
+                   "roomSize": roomSize,
+                   "roomQuantity": roomQuantity
                  },
                  "firstName": userFirstName,
                  "lastName": userLastName,
@@ -107,7 +108,7 @@
                    "state": "Arkansas",
                    "city": userCity
                  },
-                 "extras": extras.map(extra=> extra.value),
+                 "extras": extraName,
                  "payment": payMode,
                  "note": note,
                  "tags":hotelTags ,
@@ -119,30 +120,32 @@
         editUserReservationById(userDetails.id, formData);
       };
 
+      const handleChangeRoom = (event: SelectChangeEvent) => {
+        setRoomSize(event.target.value as string);
+      };
       return(
         <form onSubmit={handleSubmit}>
           <Grid container display="row">
           <Grid item xs={6} alignItems="left" >
          <TextField
-        id="datetime-local"
-        label="Arrival Date"
-        type="datetime-local"
-        name="arrivalDate"
-        onChange={(e)=>setArrivalDate(e.target.value)}
-        defaultValue={arrivalDate}
-        InputLabelProps={{
-          shrink: true,
-        }}
+            id="arrival-datetime-local"
+            label="Arrival Date"
+            type="datetime-local"
+            name="arrivalDate"
+            onChange={(e)=>setArrivalDate(e.target.value)}
+            defaultValue={arrivalDate}
+            InputLabelProps={{
+              shrink: true,
+            }}
       />
       </Grid>
       <Grid item xs={6} alignItems="left" >
          <TextField
-        id="datetime-local"
+        id="departure-datetime-local"
         label="deparure Date"
         type="datetime-local"
         name="departureDate"
         onChange={(e)=>setDepartureDate(e.target.value)}
-        
         defaultValue={departureDate}
         InputLabelProps={{
           shrink: true,
@@ -154,17 +157,17 @@
                 <InputLabel variant="standard" htmlFor="uncontrolled-native">
                   Room Size
                 </InputLabel>
-                <NativeSelect
-                  defaultValue={10}
-                  inputProps={{
-                    name: 'roomSize',
-                    id: 'uncontrolled-native',
-                  }}
-                >
-                  <option value={10}>Business Suite</option>
-                  <option value={20}>Presidential Suite</option>
-                  <option value={30}>Family Suite</option>
-                </NativeSelect>
+                <Select
+                  id="demo-simple-select"
+                  label="Select"
+                  value={roomSize}
+                 onChange={handleChangeRoom}
+                 style={{width:'240px'}}
+               >
+                 <option value='business-suite'>Business Suite</option>
+                 <option value='presidential-suite'>Presidential Suite</option>
+                 <option value='family-suite'>Family Suite</option>
+               </Select>
               </FormControl>
             </Grid>
 
@@ -175,6 +178,8 @@
                     label="Room Quantity"
                     type="number"
                     variant="standard"
+                    value={roomQuantity}
+                    onChange={(e) => setRoomQuantity(parseInt(e.target.value))}
                     />
             </Grid>
             <Grid item xs={12} alignItems="left" >
