@@ -1,4 +1,4 @@
-const hotelTags: readonly string[] = [
+const hotelTags: string[] = [
     "hotel",
 		"booking",
 		"labtest",

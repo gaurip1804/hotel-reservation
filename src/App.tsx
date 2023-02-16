@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     fetchAllReservations();
-  }, []);
+  }, [fetchAllReservations]);
 
   return (
     

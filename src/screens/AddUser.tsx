@@ -48,15 +48,13 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
    const [confirm, setConfirm] = React.useState(true);
    const [state, setState] = React.useState(Countries[0].label || null);
    const [inputValue, setInputValue] = React.useState('');
-   const [note, setNote] = React.useState<string>(''); 
-   const [tags, setTags] = React.useState<string[]>([]);
+   const [note, setNote] = React.useState<string>('');
 
    const handleChangeExtra = (event: SelectChangeEvent<typeof extraName>) => {
        const {
          target: { value },
        } = event;
 
-      console.log("val..", value)
        setExtraName(
          // On autofill we get a stringified value.
          typeof value === 'string' ? value.split(',') : value,
@@ -86,17 +84,19 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
     };
 
  
-    const handleTagChange = (event: SelectChangeEvent<typeof tags>) => {
-      const {
-        target: { value },
-      } = event;
+  //   const handleTagChange = (event: React.SyntheticEvent<Element, Event>) => {
+     
+  //    console.log("event..", event)
+  //    const {
+  //     target: {  },
+  //   } = event;
 
-     console.log("val..", value)
-      setTags(
-        // On autofill we get a stringified value.
-        typeof value === 'string' ? value.split(',') : value,
-      );
-    };
+  //   setExtraName(
+  //     // On autofill we get a stringified value.
+  //     typeof innerText === 'string' ? innerText.split(',') : innerText,
+  //   );
+  // };
+  
 
     const handleSubmit = (event:React.FormEvent) => {
       let formData={};
@@ -136,6 +136,7 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
               createReservation(formData);
               handleSubmitEdit();
     };
+
      return(
        <form onSubmit={handleSubmit}>
          <Grid container display="row">
@@ -388,6 +389,7 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
                  id="hotelTags"
                  options={hotelTags}
                  defaultValue={[hotelTags[1]]}
+                 //onChange={handleTagChange}
                  renderInput={(params) => (
                    <TextField
                      {...params}
