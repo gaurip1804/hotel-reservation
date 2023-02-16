@@ -3,7 +3,11 @@ name: ReactHotelManagement - test, build, run
 on: [push, pull_request]
 
 jobs:
-  build:
+ lint:
+    name: Lint
+    runs-on: ubuntu-latest
+  test:
+    name: Test
     runs-on: ubuntu-latest
 
     strategy:
