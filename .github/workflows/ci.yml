@@ -4,9 +4,8 @@ on: [pull_request]
 
 jobs:
   build:
-
   runs-on: ubuntu-latest
-
+  
   strategy:
       matrix:
         node-version: [18.x, 16.x]
