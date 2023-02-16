@@ -96,7 +96,7 @@
                  },
                  "firstName": userFirstName,
                  "lastName": userLastName,
-                 "email": "idm.op@idm.com",
+                 "email": userEmail,
                  "phone": userMobNum,
                  "addressStreet": {
                    "streetName": userStreet,
@@ -104,7 +104,7 @@
                  },
                  "addressLocation": {
                    "zipCode": userZipcode,
-                   "state": "Arkansas",
+                   "state": state,
                    "city": userCity
                  },
                  "extras": extraName,
