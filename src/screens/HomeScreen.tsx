@@ -97,7 +97,7 @@ const handleEditClick = (user:any) => {
  
  <div>
   
-    {open && <BookingModal open={open} handleClose={handleClose} userDetails = {userDetails}/>}
+    {open && <BookingModal open={open} handleClose={handleClose} userDetails = {userDetails} />}
     </div>
    
     </>

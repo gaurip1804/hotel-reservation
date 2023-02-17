@@ -23,13 +23,13 @@ import hotelTags from './../data/hotelTags';
 
 
 type editInterface = {
-   handleSubmitEdit(): void
+  handleClose(): void
 }
-const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
+const AddUser:React.FC<editInterface> = ({ handleClose }) => {
 
    const { createReservation } =  useContext(UserReservationContext);
 
-   const [roomSize,setRoomSize] = React.useState<string>('');
+   const [roomSize,setRoomSize] = React.useState<string>('business-suite');
    const [roomQuantity,setRoomQuantity] = React.useState<number>(1); 
    const [arrivalDate, setArrivalDate] = React.useState<string>(`${new Date()}`);
    const [departureDate, setDepartureDate] = React.useState<string>(`${new Date()}`);
@@ -132,13 +132,14 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
                "newsletter": newsletter,
                "confirm": confirm
               }
-      
+
               createReservation(formData);
-              handleSubmitEdit();
+              handleClose();
+              
     };
 
      return(
-       <form onSubmit={handleSubmit}>
+       <form onSubmit={handleSubmit} data-testid="addForm">
          <Grid container display="row">
          <Grid item xs={6} alignItems="left" >
          <TextField
@@ -197,8 +198,9 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
                    />
            </Grid>
            <Grid item xs={12} alignItems="left" >
-                   <TextField 
-                     id="firstName"
+                   <TextField
+                     required
+                     inputProps={{ "data-testid": "userFirstName" }}
                      name="firstName"
                      label="First Name"
                      type="text"
@@ -433,7 +435,7 @@ const AddUser:React.FC<editInterface> = ({handleSubmitEdit }) => {
          </Grid>
 
          <Grid item xs={12} alignItems="left" >
-         <Button type="submit" variant="contained">Save</Button>
+         <Button type="submit" variant="contained" data-testid="submitForm">Save</Button>
          </Grid>
          </Grid> 
        </form>

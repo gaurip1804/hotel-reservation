@@ -16,8 +16,6 @@ type TReview = {
   userDetails:ICreateBooking | undefined
 }
 
-
-
 export const BookingModal:React.FC<TReview> = ({open, handleClose, userDetails }) => {
   return (
     <Modal
@@ -28,8 +26,8 @@ export const BookingModal:React.FC<TReview> = ({open, handleClose, userDetails }
       style={{ overflow: 'scroll' }}
     >
       <Box sx={bookModalStyle} data-testid="find-me-in-jest">
-    {userDetails ? <EditUser handleSubmitEdit = {handleClose} userDetails = {userDetails} /> :
-     <AddUser handleSubmitEdit = {handleClose} />}
+    {userDetails && userDetails !== undefined ? <EditUser handleClose = {handleClose} userDetails = {userDetails} /> :
+     <AddUser handleClose = {handleClose} />}
         
       </Box>
     </Modal>

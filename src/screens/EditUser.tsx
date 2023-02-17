@@ -24,14 +24,14 @@
  
 
  type editInterface = {
-    handleSubmitEdit(): void
+  handleClose(): void
     userDetails : ICreateBooking
  }
- const EditUser:React.FC<editInterface> = ({handleSubmitEdit, userDetails }) => {
+ const EditUser:React.FC<editInterface> = ({handleClose, userDetails }) => {
 
     const { editUserReservationById } =  useContext(UserReservationContext);
 
-    const [roomSize,setRoomSize] = React.useState<string>(userDetails.room.roomSize || '');
+    const [roomSize,setRoomSize] = React.useState<string>(userDetails.room.roomSize || 'business-suite');
    const [roomQuantity,setRoomQuantity] = React.useState<number>(userDetails.room.roomQuantity || 1); 
     const [arrivalDate, setArrivalDate] = React.useState<string>(`${userDetails.stay.arrivalDate || new Date()}`);
     const [departureDate, setDepartureDate] = React.useState<string>(`${userDetails.stay.departureDate || new Date()}`);
@@ -83,8 +83,7 @@
       const handleSubmit = (event:React.FormEvent) => {
         let formData={};
         event.preventDefault();
-    
-        handleSubmitEdit();
+        handleClose();
         formData={
                  "stay": {
                    "arrivalDate": arrivalDate,
@@ -120,7 +119,7 @@
       };
 
       const handleChangeRoom = (event: SelectChangeEvent) => {
-        setRoomSize(event.target.value as string);
+        setRoomSize(event.target.name as string);
       };
       return(
         <form onSubmit={handleSubmit}>
@@ -162,10 +161,11 @@
                   value={roomSize}
                  onChange={handleChangeRoom}
                  style={{width:'240px'}}
+                 defaultValue='business-suite'
                >
-                 <option value='business-suite'>Business Suite</option>
-                 <option value='presidential-suite'>Presidential Suite</option>
-                 <option value='family-suite'>Family Suite</option>
+                 <MenuItem value='business-suite'>Business Suite</MenuItem>
+                 <MenuItem value='presidential-suite'>Presidential Suite</MenuItem>
+                 <MenuItem value='family-suite'>Family Suite</MenuItem>
                </Select>
               </FormControl>
             </Grid>

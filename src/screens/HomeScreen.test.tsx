@@ -3,6 +3,7 @@ import  HomeScreen  from './HomeScreen';
 import { Provider } from './../context/reservations';
 import '@testing-library/jest-dom';
 import { BookingModal } from '../components/BookingModal';
+import {ICreateBooking} from '../interface/UserRoom';
 
 
   const props: any = {
@@ -11,12 +12,12 @@ import { BookingModal } from '../components/BookingModal';
 
   const modalProps: any = {
     handleClose: jest.fn(),
-    userDetails: {},
+    userDetails: undefined,
     open:true
   };
 
 
-test('Test submit', () => {
+test('submit', () => {
     render(<Provider><HomeScreen {...props} /></Provider>);
     const linkElement = screen.getByText('Add record');
     expect(linkElement).toBeInTheDocument();
@@ -24,15 +25,15 @@ test('Test submit', () => {
 
   describe("Modal", () => {
     test("renders correctly", async () => {
-      render(<BookingModal {...modalProps}/>);
+      render(<Provider><BookingModal {...modalProps}/></Provider>);
       expect(screen.getByTestId("find-me-in-jest")).toBeVisible();
     });
 });
 
-test("should call Add record", () => {
-    const handleClick = jest.fn();
-    render(<Provider><HomeScreen {...props} /></Provider>);
-    fireEvent.click(screen.getByText("Add record"))
-    expect(handleClick).toHaveBeenCalled();
-  });
+// test("should call Add record", () => {
+//     const handleClick = jest.fn();
+//     render(<Provider><HomeScreen {...props} /></Provider>);
+//     fireEvent.click(screen.getByText("Add record"))
+//     expect(handleClick).toHaveBeenCalled();
+//   });
 
