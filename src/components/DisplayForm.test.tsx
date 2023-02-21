@@ -152,7 +152,7 @@ describe('DisplayForm Snapshot', () => {
    });
 
 
-   it("should update state on room quantity click", () => {
+   it("should spy functions and states", () => {
     const setRoomQuantity = jest.fn();
     const setUserStreetNum = jest.fn();
     const handleNewsletter = jest.fn();

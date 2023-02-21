@@ -5,6 +5,7 @@ import {
 } from "@mui/material";
 import { bookModalStyle } from "./../helpers/styles";
 import {ICreateBooking} from '../interface/UserRoom';
+import CloseIcon from '@mui/icons-material/Close';
 
 import DisplayForm from './DisplayForm';
 
@@ -27,6 +28,7 @@ const BookingModal:React.FC<TReview> = ({open, handleSubmit, userDetails, handle
       style={{ overflow: 'scroll' }}
       data-testid="modal"
     >
+
       <Box sx={bookModalStyle} data-testid="find-me-in-jest">
       <DisplayForm handleSubmit = {handleSubmit} userDetails = {userDetails} />
       </Box>

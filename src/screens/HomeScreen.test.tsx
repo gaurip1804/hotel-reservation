@@ -1,10 +1,15 @@
 import React from 'react';
-import {render, screen } from '@testing-library/react';
+import {render, screen, fireEvent } from '@testing-library/react';
 import  HomeScreen  from './HomeScreen';
 import { Provider } from './../context/reservations';
 import '@testing-library/jest-dom';
 import  BookingModal  from '../components/BookingModal';
 import userEvent from '@testing-library/user-event';
+import { DataGrid,GridRowId,  } from '@mui/x-data-grid';
+import dataColumns from './../data/dataColumns';
+import {GridActionsCellItem }from '@mui/x-data-grid-pro';
+import EditIcon from '@mui/icons-material/Edit';
+ import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 
 
 
@@ -15,6 +20,96 @@ import userEvent from '@testing-library/user-event';
     handleClose: jest.fn(),
   };
 
+  let arr:any[] = [];
+  const rows=[
+    {
+      "stay": {
+        "arrivalDate": "2021-11-01T04:00",
+        "departureDate": "2021-11-04T04:00"
+      },
+      "room": {
+        "roomSize": "presidential-suite",
+        "roomQuantity": 2
+      },
+      "firstName": "IDM",
+      "lastName": "ENG",
+      "email": "idm.op@idm.com",
+      "phone": "9999999999",
+      "addressStreet": {
+        "streetName": "IDM Street",
+        "streetNumber": "1234"
+      },
+      "addressLocation": {
+        "zipCode": "123456",
+        "state": "Arkansas",
+        "city": "OAKVILLE"
+      },
+      "extras": [
+        "extraBreakfast",
+        "extraTV",
+        "extraWiFi"
+      ],
+      "payment": "cc",
+      "note": "idm lab test",
+      "tags": [
+        "hotel",
+        "booking",
+        "labtest",
+        "angular",
+        "material"
+      ],
+      "reminder": true,
+      "newsletter": true,
+      "confirm": true,
+      "id": 1
+    },]
+  const abc =  {
+    field: 'actions',
+    type: 'actions',
+    headerName: 'Actions',
+    width: 170,
+    cellClassName: 'actions',
+    editable:true,
+    getActions: (user: GridRowId) => {
+      return (
+      [
+        <GridActionsCellItem
+        icon={<EditIcon />}
+          label="Edit"
+          name = "Edit"
+          id="edit"
+          className="textPrimary"
+          color="inherit"
+        />,
+        <GridActionsCellItem
+        icon={<DeleteIcon />}
+          id="delete"
+          name = "delete"
+          label="Delete"
+          color="inherit"
+        />,
+      ]
+      )
+    },
+  }
+
+  arr.push(...dataColumns, abc)
+  const columns = arr;
+
+  let component:any;
+  const setup = () => {
+    component = render(<Provider><HomeScreen {...modalProps}><DataGrid rows={rows} columns={columns}/></HomeScreen></Provider>);
+  }
+
+  beforeEach(() => {
+    setup();
+  });
+
+  test('Home Div', () => {
+    render(<Provider><HomeScreen/></Provider>);
+    const linkElement = screen.getAllByTestId('homeDiv')[0]
+    expect(linkElement).toBeInTheDocument();
+  });
 
 test('Add record', () => {
     render(<Provider><HomeScreen/></Provider>);
@@ -40,9 +135,10 @@ test('Add record', () => {
       expect(screen.getByTestId("find-me-in-jest")).toBeVisible();
     });
 
-    describe('DisplayForm Snapshot', () => {
-      let  view = render(<Provider><HomeScreen {...modalProps}></HomeScreen></Provider>);
-        expect(view).toMatchSnapshot();
+      describe('DisplayForm Snapshot', () => {
+        it('should render the component against default mockdata', () => {
+        expect(component.asFragment()).toMatchSnapshot();
+        });
     });
 
     test('testbAdd click', async () => {
@@ -65,6 +161,7 @@ describe('Datagrid problem repro', () => {
     render(<Provider><HomeScreen {...modalProps} /></Provider>);
     expect(screen.getAllByRole('grid')[0]).toBeInTheDocument();
   });
+
 
   it('should render row', () => {
     render(<Provider><HomeScreen {...modalProps} /></Provider>);
@@ -90,6 +187,12 @@ describe('Datagrid problem repro', () => {
     const handleClose = jest.fn();
     const setUsers = jest.fn();
     const handleClick= jest.fn();
+    const getActions= jest.fn();
+    const setOpen= jest.fn();
+
+    
+
+    
     
     render(<Provider><HomeScreen {...modalProps} /></Provider>);
     const handleClick1 = jest.spyOn(React, "useState");
@@ -98,7 +201,9 @@ describe('Datagrid problem repro', () => {
     handleClick1.mockImplementation((userDetails?: any) => [userDetails, setUsers]);
     handleClick1.mockImplementation((open?: any) => [open, handleClose]);
     handleClick1.mockImplementation((open?: any) => [open, handleClick]);
-
+   // handleClick1.mockImplementation((open?: any) => [open, setOpen]);
+     userEvent.click(screen.getAllByText('Add record')[0],setOpen(true))
+     userEvent.click(screen.getAllByRole('button', {name: 'Save'})[0]);
    });
 
 

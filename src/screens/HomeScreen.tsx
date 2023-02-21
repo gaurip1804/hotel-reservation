@@ -9,15 +9,19 @@ import {GridActionsCellItem, GridToolbarContainer }from '@mui/x-data-grid-pro';
  import EditIcon from '@mui/icons-material/Edit';
  import DeleteIcon from '@mui/icons-material/DeleteOutlined';
  import Button from '@mui/material/Button';
+import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 
 
 
  let arr:any[] = [];
+ type HomeScreenProps = {
+  children: React.ReactNode
+};
 
- const HomeScreen: React.FC = () => {
+ const HomeScreen: any = (props:HomeScreenProps) => {
   const { reservations,  createReservation,editUserReservationById, deleteReservationById } =  useContext(UserReservationContext);
  
-  const abc =  {
+  const dataTableActions =  {
     field: 'actions',
     type: 'actions',
     headerName: 'Actions',
@@ -30,16 +34,13 @@ import {GridActionsCellItem, GridToolbarContainer }from '@mui/x-data-grid-pro';
         <GridActionsCellItem
           icon={<EditIcon />}
           label="Edit"
-          id="edit"
-          data-testid = "edit"
           className="textPrimary"
           onClick = {()=>handleEditClick(user)}
           color="inherit"
         />,
         <GridActionsCellItem
           icon={<DeleteIcon />}
-          id="delete"
-          data-testid = "delete"
+          name = "delete"
           label="Delete"
          onClick={()=>handleDelete(user)}
           color="inherit"
@@ -49,7 +50,7 @@ import {GridActionsCellItem, GridToolbarContainer }from '@mui/x-data-grid-pro';
     },
   }
 
-  arr.push(...dataColumns, abc)
+  arr.push(...dataColumns, dataTableActions)
   const columns = arr;
   
 const [open, setOpen] = useState(false);
@@ -92,11 +93,11 @@ const handleSubmit = (formData:any) => {
     );
   }
     return(
-       <>  
+       <div data-testid="homeDiv">  
     <div style={{height : 100, background:'#F8A756', paddingTop: 30}}><h3>Reservation System</h3></div>
     <div style={{ height: 400, width: '100%' }}>
     
-     {reservations && 
+     {reservations &&
      <DataGrid
         rows={reservations}
         columns={columns}
@@ -112,7 +113,7 @@ const handleSubmit = (formData:any) => {
     {open && <BookingModal data-testid="bookingModal" open={open}  userDetails = {userDetails} handleSubmit = {handleSubmit} handleClose={handleClose} />}
     </div>
    
-    </>
+    </div>
     )
 };
 
