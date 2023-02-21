@@ -1,9 +1,10 @@
 import React from 'react';
-import { fireEvent, render, screen, act, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import  DisplayForm  from './DisplayForm';
 import { Provider } from './../context/reservations';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
+import { act } from 'react-dom/test-utils';
   const props: any = {
     handleSubmit: jest.fn(),
     userDetails:undefined,
@@ -61,22 +62,24 @@ describe('DisplayForm Snapshot', () => {
   it("should display required error when value is invalid", async () => {
     const onSubmit = jest.fn();
     
-    render(<Provider><DisplayForm {...props} /></Provider>);
-    fireEvent.submit(screen.getAllByTestId('submitForm')[0]);
+    render(<Provider><DisplayForm {...props} /></Provider>)
+    fireEvent.submit(await waitFor(() => screen.getAllByTestId('submitForm')[0]))
     expect(onSubmit).not.toBeCalled();
   });
 
   test('submit on click', async () => {
     render(<Provider><DisplayForm {...newprops} /></Provider>);
 
-  userEvent.click(screen.getAllByRole('button', {name: 'Save'})[0]);  });
+  userEvent.click(await waitFor(() =>screen.getAllByRole('button', {name: 'Save'})[0]));
+
+})
 
   test("should submit the form with confirmation", async () => {
     render(<Provider><DisplayForm {...newprops}/></Provider>)
     const confirm =  await waitFor(()=>screen.getAllByTestId("confirm")[0])
     const submitForm = await waitFor(()=>screen.getAllByRole('button', {name: 'Save'})[0])
 
-      userEvent.click(confirm)
+    userEvent.click(confirm)
     userEvent.click(submitForm);
   });
 
