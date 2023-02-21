@@ -2,7 +2,8 @@
   "name": "hotel-reservation",
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.tsx"
+      "src/**/*.tsx",
+      "src/**/*.ts"
   ]
 },
   "version": "0.1.0",

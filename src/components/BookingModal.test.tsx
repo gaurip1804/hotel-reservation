@@ -17,5 +17,4 @@ describe('DisplayForm Snapshot', () => {
         let  view = render(<Provider><BookingModal {...props}></BookingModal></Provider>);
         expect(view).toMatchSnapshot();
     })
-    
   });

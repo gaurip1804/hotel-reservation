@@ -200,7 +200,4 @@ describe('Datagrid problem repro', () => {
      userEvent.click(screen.getAllByText('Add record')[0],setOpen(true))
      userEvent.click(screen.getAllByRole('button', {name: 'Save'})[0]);
    });
-
-
-  
 });

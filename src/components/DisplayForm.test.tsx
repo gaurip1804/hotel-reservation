@@ -83,18 +83,17 @@ describe('DisplayForm Snapshot', () => {
     userEvent.click(submitForm);
   });
 
-
   describe('SampleForm', () => {
     test('Input value should be equal first name', async () => {
        render(<Provider><DisplayForm {...props} /></Provider>);
-        const input =  screen.getAllByRole('textbox', {name : 'firstName'})[0] as HTMLInputElement;
+        const input =  await waitFor(()=>screen.getAllByRole('textbox', {name : 'firstName'})[0]) as HTMLInputElement;
          userEvent.type(input, 'hello ')
         expect(input.value).toBe('hello '); 
       });
 
       test('Input value should be equal last name', async () => {
         render(<Provider><DisplayForm {...props} /></Provider>);
-         const input =  screen.getAllByRole('textbox', {name : 'lastName'})[0] as HTMLInputElement;
+         const input =  await waitFor(()=>screen.getAllByRole('textbox', {name : 'lastName'})[0]) as HTMLInputElement;
           userEvent.type(input, ' world')
          expect(input.value).toBe(' world'); 
        });
@@ -102,7 +101,7 @@ describe('DisplayForm Snapshot', () => {
 
     test('Input value should be equal email', async () => {
       render(<Provider><DisplayForm {...props} /></Provider>);
-       const input =  screen.getAllByRole('textbox', {name : 'email'})[0] as HTMLInputElement;
+       const input =  await waitFor(()=>screen.getAllByRole('textbox', {name : 'email'})[0]) as HTMLInputElement;
         userEvent.type(input, 'hello@world.com')
        expect(input.value).toBe('hello@world.com'); 
      });
@@ -110,29 +109,29 @@ describe('DisplayForm Snapshot', () => {
 
   test('Input value should be equal Phone number', async () => {
     render(<Provider><DisplayForm {...props} /></Provider>);
-     const input =  screen.getAllByRole('spinbutton', {name : 'mobNum'})[0] as HTMLInputElement;
+     const input =  await waitFor(()=>screen.getAllByRole('spinbutton', {name : 'mobNum'})[0]) as HTMLInputElement;
       userEvent.type(input, '123456789')
      expect(input.value).toBe('123456789'); 
    });
 
    test('Input value should check confirm', async () => {
     render(<Provider><DisplayForm {...props} /></Provider>);
-     const input =  screen.getAllByRole('checkbox', {name : 'confirm'})[0] as HTMLInputElement;
+     const input =  await waitFor(()=>screen.getAllByRole('checkbox', {name : 'confirm'})[0]) as HTMLInputElement;
       userEvent.type(input, 'on')
      expect(input.value).toBe('on'); 
    });
 
    test("should be able to onchange newsletter", async () => {
     render(<Provider><DisplayForm {...props} /></Provider>);
-    const input = screen.getAllByRole('checkbox', {name : 'newsletter'})[0] as HTMLInputElement;
+    const input = await waitFor(()=>screen.getAllByRole('checkbox', {name : 'newsletter'})[0]) as HTMLInputElement;
 
-    fireEvent.change(screen.getAllByRole('checkbox', {name : 'newsletter'})[0], { target: { value: 'on' } });
+    fireEvent.change(await waitFor(()=>screen.getAllByRole('checkbox', {name : 'newsletter'})[0]), { target: { value: 'on' } });
     expect(input.value).toBe('on');
    })
 
     test("should be able to onchange reminder", async () => {
       render(<Provider><DisplayForm {...props} /></Provider>);
-      const input = screen.getAllByRole('checkbox', {name : 'reminder'})[0] as HTMLInputElement;
+      const input = await waitFor(()=>screen.getAllByRole('checkbox', {name : 'reminder'})[0]) as HTMLInputElement;
   
       userEvent.type(input, 'on')
       expect(input.value).toBe('on');
@@ -141,14 +140,14 @@ describe('DisplayForm Snapshot', () => {
 
    test('Input value should check payment button clicked', async () => {
     render(<Provider><DisplayForm {...props} /></Provider>);
-     const input =  screen.getAllByRole('radio', {name : 'Cash'})[0] as HTMLInputElement;
+     const input =  await waitFor(()=>screen.getAllByRole('radio', {name : 'Cash'})[0]) as HTMLInputElement;
       userEvent.type(input, 'cash')
      expect(input.value).toBe('cash'); 
    });
 
    test('Input value should check State/Country', async () => {
     render(<Provider><DisplayForm {...props} /></Provider>);
-     const input =  screen.getAllByRole('combobox', {name : 'Country'})[0] as HTMLInputElement;
+     const input =  await waitFor(()=>screen.getAllByRole('combobox', {name : 'Country'})[0]) as HTMLInputElement;
       userEvent.type(input, 'Andorra')
      expect(input.value).toBe('Andorra'); 
    });
