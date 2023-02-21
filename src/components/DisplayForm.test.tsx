@@ -201,8 +201,7 @@ describe('DisplayForm Snapshot', () => {
     userEvent.type(input3, 'on')
 
     const input4 = screen.getAllByRole('button', {name : 'roomSize'})[0] as HTMLInputElement;
-    userEvent.type(input4,"business-suite")
-    //fireEvent.select(input4, { target: { value: "business-suite" } });
+    userEvent.type(input4,"business-suite");
 
     const input5 = screen.getAllByTestId('streetName')[0] as HTMLInputElement;
     userEvent.type(input5, 'abcd')

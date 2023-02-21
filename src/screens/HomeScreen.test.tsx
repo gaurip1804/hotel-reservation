@@ -57,17 +57,26 @@ describe('Datagrid problem repro', () => {
   it('should render rowgroup', () => {
     render(<Provider><HomeScreen {...modalProps} /></Provider>);
     expect(screen.getAllByRole('rowgroup')[0]).toBeInTheDocument();
+   
+  });
+
+
+  it('should render datagrid', () => {
+    render(<Provider><HomeScreen {...modalProps} /></Provider>);
+    expect(screen.getAllByRole('grid')[0]).toBeInTheDocument();
   });
 
   it('should render row', () => {
     render(<Provider><HomeScreen {...modalProps} /></Provider>);
     expect(screen.getAllByRole('row')[0]).toBeInTheDocument();
+    expect(screen.getAllByRole('row', {name: 'Select all rows ID First name'})[0]).toBeInTheDocument();
   });
 
 
   it('should render columnHeader', () => {
     render(<Provider><HomeScreen {...modalProps} /></Provider>);
     expect(screen.getAllByRole('columnheader')[0]).toBeInTheDocument();
+    expect(screen.getAllByRole('columnheader', {name: 'Select all rows'})[0]).toBeInTheDocument();
   });
 
   it('should render row checkbox', () => {
@@ -80,13 +89,15 @@ describe('Datagrid problem repro', () => {
     const handleEditClick = jest.fn();
     const handleClose = jest.fn();
     const setUsers = jest.fn();
+    const handleClick= jest.fn();
     
     render(<Provider><HomeScreen {...modalProps} /></Provider>);
-    const handleClick = jest.spyOn(React, "useState");
-    handleClick.mockImplementation((reservations?: any) => [reservations, handleDelete]);
-    handleClick.mockImplementation((userDetails?: any) => [userDetails, handleEditClick]);
-    handleClick.mockImplementation((userDetails?: any) => [userDetails, setUsers]);
-    handleClick.mockImplementation((open?: any) => [open, handleClose]);
+    const handleClick1 = jest.spyOn(React, "useState");
+    handleClick1.mockImplementation((reservations?: any) => [reservations, handleDelete]);
+    handleClick1.mockImplementation((userDetails?: any) => [userDetails, handleEditClick]);
+    handleClick1.mockImplementation((userDetails?: any) => [userDetails, setUsers]);
+    handleClick1.mockImplementation((open?: any) => [open, handleClose]);
+    handleClick1.mockImplementation((open?: any) => [open, handleClick]);
 
    });
 
