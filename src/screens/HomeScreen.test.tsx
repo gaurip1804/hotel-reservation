@@ -130,7 +130,7 @@ test('Add record', () => {
   });
 
   describe("Modal", () => {
-    test("renders correctly", async () => {
+    test("renders correctly", () => {
       render(<Provider><BookingModal {...modalProps}/></Provider>);
       expect(screen.getByTestId("find-me-in-jest")).toBeVisible();
     });
@@ -141,7 +141,7 @@ test('Add record', () => {
         });
     });
 
-    test('testbAdd click', async () => {
+    test('testbAdd click', () => {
         render(<Provider><HomeScreen {...modalProps} /></Provider>);
         expect(screen.getAllByRole('button',{name: 'Add record'})[0]).toBeInTheDocument();
       userEvent.click(screen.getAllByRole('button', {name: 'Add record'})[0]);
