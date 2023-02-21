@@ -86,28 +86,30 @@
     },
     {
       "stay": {
-        "arrivalDate": "Fri Feb 17 2023 12:46:42 GMT-0500 (Eastern Standard Time)",
-        "departureDate": "Fri Feb 17 2023 12:46:42 GMT-0500 (Eastern Standard Time)"
+        "arrivalDate": "2023-02-25T04:01",
+        "departureDate": "2021-04-27T09:00"
       },
       "room": {
-        "roomSize": "business-suite",
+        "roomSize": "presidential-suite",
         "roomQuantity": 1
       },
-      "firstName": "test-value",
-      "lastName": "",
-      "email": "",
-      "phone": "",
+      "firstName": "dffs",
+      "lastName": "sdf",
+      "email": "dfd@df.com",
+      "phone": "3445454",
       "addressStreet": {
-        "streetName": "",
-        "streetNumber": 0
+        "streetName": "dfsd",
+        "streetNumber": 1
       },
       "addressLocation": {
-        "zipCode": "",
-        "state": "Andorra",
-        "city": ""
+        "zipCode": "fe5tet5",
+        "state": "Angola",
+        "city": "dfsf"
       },
-      "extras": [],
-      "payment": "cc",
+      "extras": [
+        "extraBreakfast"
+      ],
+      "payment": "cash",
       "note": "",
       "tags": [
         "hotel",
@@ -117,120 +119,9 @@
         "material"
       ],
       "reminder": true,
-      "newsletter": true,
+      "newsletter": false,
       "confirm": true,
       "id": 3
-    },
-    {
-      "stay": {
-        "arrivalDate": "Fri Feb 17 2023 12:49:10 GMT-0500 (Eastern Standard Time)",
-        "departureDate": "Fri Feb 17 2023 12:49:10 GMT-0500 (Eastern Standard Time)"
-      },
-      "room": {
-        "roomSize": "business-suite",
-        "roomQuantity": 1
-      },
-      "firstName": "test-value",
-      "lastName": "",
-      "email": "",
-      "phone": "",
-      "addressStreet": {
-        "streetName": "",
-        "streetNumber": 0
-      },
-      "addressLocation": {
-        "zipCode": "",
-        "state": "Andorra",
-        "city": ""
-      },
-      "extras": [],
-      "payment": "cc",
-      "note": "",
-      "tags": [
-        "hotel",
-        "booking",
-        "labtest",
-        "angular",
-        "material"
-      ],
-      "reminder": true,
-      "newsletter": true,
-      "confirm": true,
-      "id": 4
-    },
-    {
-      "stay": {
-        "arrivalDate": "Fri Feb 17 2023 12:52:36 GMT-0500 (Eastern Standard Time)",
-        "departureDate": "Fri Feb 17 2023 12:52:36 GMT-0500 (Eastern Standard Time)"
-      },
-      "room": {
-        "roomSize": "business-suite",
-        "roomQuantity": 1
-      },
-      "firstName": "test-value",
-      "lastName": "",
-      "email": "",
-      "phone": "",
-      "addressStreet": {
-        "streetName": "",
-        "streetNumber": 0
-      },
-      "addressLocation": {
-        "zipCode": "",
-        "state": "Andorra",
-        "city": ""
-      },
-      "extras": [],
-      "payment": "cc",
-      "note": "",
-      "tags": [
-        "hotel",
-        "booking",
-        "labtest",
-        "angular",
-        "material"
-      ],
-      "reminder": true,
-      "newsletter": true,
-      "confirm": true,
-      "id": 5
-    },
-    {
-      "stay": {
-        "arrivalDate": "Fri Feb 17 2023 13:35:51 GMT-0500 (Eastern Standard Time)",
-        "departureDate": "Fri Feb 17 2023 13:35:51 GMT-0500 (Eastern Standard Time)"
-      },
-      "room": {
-        "roomSize": "business-suite",
-        "roomQuantity": 1
-      },
-      "firstName": "test-value",
-      "lastName": "",
-      "email": "",
-      "phone": "",
-      "addressStreet": {
-        "streetName": "",
-        "streetNumber": 0
-      },
-      "addressLocation": {
-        "zipCode": "",
-        "state": "Andorra",
-        "city": ""
-      },
-      "extras": [],
-      "payment": "cc",
-      "note": "",
-      "tags": [
-        "hotel",
-        "booking",
-        "labtest",
-        "angular",
-        "material"
-      ],
-      "reminder": true,
-      "newsletter": true,
-      "confirm": true,
-      "id": 6
     }
   ]
 }
