@@ -28,9 +28,7 @@ const BookingModal:React.FC<TReview> = ({open, handleSubmit, userDetails, handle
       data-testid="modal"
     >
       <Box sx={bookModalStyle} data-testid="find-me-in-jest">
-    {/* {userDetails && userDetails !== undefined ? <EditUser handleClose = {handleClose} userDetails = {userDetails} /> :<AddUser handleClose = {handleClose} />} */}
       <DisplayForm handleSubmit = {handleSubmit} userDetails = {userDetails} />
-        
       </Box>
     </Modal>
   );

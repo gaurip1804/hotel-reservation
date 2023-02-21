@@ -1,22 +1,57 @@
-import React, { useState } from 'react';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import  DisplayForm  from './DisplayForm';
 import { Provider } from './../context/reservations';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-//import Adapter from "enzyme-adapter-react-16";
-//import { shallow, configure } from "enzyme";
-
-
-//configure({ adapter: new Adapter() });
-
-
   const props: any = {
     handleSubmit: jest.fn(),
     userDetails:undefined,
   };
 
-
+  const newprops: any = {
+    handleSubmit: jest.fn(),
+    userDetails:{
+        "stay": {
+            "arrivalDate": "2021-11-01 04:00",
+            "departureDate": "2021-11-04 04:00"
+          },
+          "room": {
+            "roomSize": "presidential-suite",
+            "roomQuantity": 2
+          },
+          "firstName": "IDM",
+          "lastName": "ENG",
+          "email": "idm.op@idm.com",
+          "phone": "9999999999",
+          "addressStreet": {
+            "streetName": "IDM Street",
+            "streetNumber": "1234"
+          },
+          "addressLocation": {
+            "zipCode": "123456",
+            "state": "Arkansas",
+            "city": "OAKVILLE"
+          },
+          "extras": [
+            "extraBreakfast",
+            "extraTV",
+            "extraWiFi"
+          ],
+          "payment": "cc",
+          "note": "idm lab test",
+          "tags": [
+            "hotel",
+            "booking",
+            "labtest",
+            "angular",
+            "material"
+          ],
+          "reminder": true,
+          "newsletter": true,
+          "confirm": true,
+        },
+    };
 
 describe('DisplayForm Snapshot', () => {
     let  view = render(<Provider><DisplayForm {...props}></DisplayForm></Provider>);
@@ -32,108 +67,18 @@ describe('DisplayForm Snapshot', () => {
   });
 
   test('submit on click', async () => {
-    //const onSubmit = jest.fn((e) => e.preventDefault())
-    const newprops: any = {
-        handleSubmit: jest.fn(),
-        userDetails:{
-            "stay": {
-                "arrivalDate": "2021-11-01T04:00",
-                "departureDate": "2021-11-04T04:00"
-              },
-              "room": {
-                "roomSize": "presidential-suite",
-                "roomQuantity": 2
-              },
-              "firstName": "IDM",
-              "lastName": "ENG",
-              "email": "idm.op@idm.com",
-              "phone": "9999999999",
-              "addressStreet": {
-                "streetName": "IDM Street",
-                "streetNumber": "1234"
-              },
-              "addressLocation": {
-                "zipCode": "123456",
-                "state": "Arkansas",
-                "city": "OAKVILLE"
-              },
-              "extras": [
-                "extraBreakfast",
-                "extraTV",
-                "extraWiFi"
-              ],
-              "payment": "cc",
-              "note": "idm lab test",
-              "tags": [
-                "hotel",
-                "booking",
-                "labtest",
-                "angular",
-                "material"
-              ],
-              "reminder": true,
-              "newsletter": true,
-              "confirm": true,
-            },
-      };
       render(<Provider><DisplayForm {...newprops} /></Provider>);
     userEvent.click(screen.getAllByRole('button', {name: 'Save'})[0]);
 
   })
 
   test("should submit the form with confirmation", async () => {
-    const newprops: any = {
-      handleSubmit: jest.fn(),
-      userDetails:{
-          "stay": {
-              "arrivalDate": "2021-11-01 04:00",
-              "departureDate": "2021-11-04 04:00"
-            },
-            "room": {
-              "roomSize": "presidential-suite",
-              "roomQuantity": 2
-            },
-            "firstName": "IDM",
-            "lastName": "ENG",
-            "email": "idm.op@idm.com",
-            "phone": "9999999999",
-            "addressStreet": {
-              "streetName": "IDM Street",
-              "streetNumber": "1234"
-            },
-            "addressLocation": {
-              "zipCode": "123456",
-              "state": "Arkansas",
-              "city": "OAKVILLE"
-            },
-            "extras": [
-              "extraBreakfast",
-              "extraTV",
-              "extraWiFi"
-            ],
-            "payment": "cc",
-            "note": "idm lab test",
-            "tags": [
-              "hotel",
-              "booking",
-              "labtest",
-              "angular",
-              "material"
-            ],
-            "reminder": true,
-            "newsletter": true,
-            "confirm": true,
-          },
-      };
-
     render(<Provider><DisplayForm {...newprops}/></Provider>);
     const confirm =  screen.getAllByTestId("confirm")[0];
     const submitForm = screen.getAllByRole('button', {name: 'Save'})[0]
 
     userEvent.click(confirm);
     userEvent.click(submitForm);
-   
-    //expect(onClick).toHaveBeenCalled();
   });
 
 

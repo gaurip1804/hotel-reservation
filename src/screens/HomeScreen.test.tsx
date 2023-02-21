@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import {render, screen } from '@testing-library/react';
 import  HomeScreen  from './HomeScreen';
 import { Provider } from './../context/reservations';
 import '@testing-library/jest-dom';
@@ -49,24 +49,9 @@ test('Add record', () => {
         render(<Provider><HomeScreen {...modalProps} /></Provider>);
         expect(screen.getAllByRole('button',{name: 'Add record'})[0]).toBeInTheDocument();
       userEvent.click(screen.getAllByRole('button', {name: 'Add record'})[0]);
-    //  expect(handleClick).toBeCalled();
     });
-    
-  //   test('test delete click', async () => {
-  //     render(<Provider><HomeScreen {...modalProps} /></Provider>);
-  //     expect(screen.getAllByRole('button',{name: 'Delete'})[0]).toBeInTheDocument();
-  //   userEvent.click(screen.getAllByRole('button', {name: 'Delete'})[0]);
-  // //  expect(handleClick).toBeCalled();
-  // });
+
 });
-
-// test("should call Add record", () => {
-//     const handleClick = jest.fn();
-//     render(<Provider><HomeScreen {...props} /></Provider>);
-//     fireEvent.click(screen.getByText("Add record"))
-//     expect(handleClick).toHaveBeenCalled();
-//   });
-
 
 describe('Datagrid problem repro', () => {
   it('should render rowgroup', () => {

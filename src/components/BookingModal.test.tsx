@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import  BookingModal  from './BookingModal';
 import { Provider } from './../context/reservations';
 import '@testing-library/jest-dom';
