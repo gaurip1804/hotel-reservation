@@ -5,11 +5,8 @@ import {
 } from "@mui/material";
 import { bookModalStyle } from "./../helpers/styles";
 import {ICreateBooking} from '../interface/UserRoom';
-import CloseIcon from '@mui/icons-material/Close';
 
 import DisplayForm from './DisplayForm';
-
-
 
 type TReview = {
   open : boolean

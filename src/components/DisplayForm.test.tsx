@@ -234,7 +234,6 @@ describe('DisplayForm Snapshot', () => {
 
   const input12 = screen.getAllByRole('combobox', {name : 'Multiple values'})[0] as HTMLInputElement;
   userEvent.type(input12, 'booking');
- // fireEvent.change(input12, { target: { value: "extraParking" } });
 
   const input13 = screen.getAllByRole('button', {name : 'extras'})[0] as HTMLInputElement;
     userEvent.type(input13,"extraParking")

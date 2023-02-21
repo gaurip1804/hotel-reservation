@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, screen, fireEvent } from '@testing-library/react';
+import {render, screen } from '@testing-library/react';
 import  HomeScreen  from './HomeScreen';
 import { Provider } from './../context/reservations';
 import '@testing-library/jest-dom';
@@ -187,12 +187,8 @@ describe('Datagrid problem repro', () => {
     const handleClose = jest.fn();
     const setUsers = jest.fn();
     const handleClick= jest.fn();
-    const getActions= jest.fn();
     const setOpen= jest.fn();
 
-    
-
-    
     
     render(<Provider><HomeScreen {...modalProps} /></Provider>);
     const handleClick1 = jest.spyOn(React, "useState");
@@ -201,7 +197,6 @@ describe('Datagrid problem repro', () => {
     handleClick1.mockImplementation((userDetails?: any) => [userDetails, setUsers]);
     handleClick1.mockImplementation((open?: any) => [open, handleClose]);
     handleClick1.mockImplementation((open?: any) => [open, handleClick]);
-   // handleClick1.mockImplementation((open?: any) => [open, setOpen]);
      userEvent.click(screen.getAllByText('Add record')[0],setOpen(true))
      userEvent.click(screen.getAllByRole('button', {name: 'Save'})[0]);
    });
