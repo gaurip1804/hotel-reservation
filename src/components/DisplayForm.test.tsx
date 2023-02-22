@@ -1,10 +1,9 @@
 import React from 'react';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import  DisplayForm  from './DisplayForm';
 import { Provider } from './../context/reservations';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { act } from 'react-dom/test-utils';
   const props: any = {
     handleSubmit: jest.fn(),
     userDetails:undefined,
@@ -14,7 +13,7 @@ import { act } from 'react-dom/test-utils';
     handleSubmit: jest.fn(),
     userDetails:{
         "stay": {
-            "arrivalDate": "2021-11-01 04:00",
+            "arrivalDate": "2021-11-02 04:00",
             "departureDate": "2021-11-04 04:00"
           },
           "room": {

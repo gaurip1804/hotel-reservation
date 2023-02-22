@@ -14,7 +14,7 @@ const props: any = {
 
 describe('DisplayForm Snapshot', () => {
     test('render', async () => {
-        let  view = render(<Provider><BookingModal {...props}></BookingModal></Provider>);
+        let view = render(<Provider><BookingModal {...props}></BookingModal></Provider>);
         expect(view).toMatchSnapshot();
     })
   });
