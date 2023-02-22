@@ -1,9 +1,10 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, act, waitFor } from '@testing-library/react';
 import  DisplayForm  from './DisplayForm';
 import { Provider } from './../context/reservations';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
+
   const props: any = {
     handleSubmit: jest.fn(),
     userDetails:undefined,
@@ -60,18 +61,18 @@ describe('DisplayForm Snapshot', () => {
 
   it("should display required error when value is invalid",  () => {
     const onSubmit = jest.fn();
-    
     render(<Provider><DisplayForm {...props} /></Provider>)
     fireEvent.submit(screen.getAllByTestId('submitForm')[0])
     expect(onSubmit).not.toBeCalled();
   });
 
-  test('submit on click',  () => {
+  test('submit on click',  async () => {
     render(<Provider><DisplayForm {...newprops} /></Provider>);
-
-  userEvent.click(screen.getAllByRole('button', {name: 'Save'})[0]);
-
+    await waitFor(() => { 
+     new Promise(()=>userEvent.click(screen.getAllByRole('button', {name: 'Save'})[0])) 
+  })  
 })
+
 
   test("should submit the form with confirmation", () => {
     render(<Provider><DisplayForm {...newprops}/></Provider>)
