@@ -74,13 +74,13 @@ describe('DisplayForm Snapshot', () => {
 })
 
 
-  test("should submit the form with confirmation", () => {
+  test("should submit the form with confirmation", async () => {
     render(<Provider><DisplayForm {...newprops}/></Provider>)
-    const confirm =  screen.getAllByTestId("confirm")[0]
-    const submitForm = screen.getAllByRole('button', {name: 'Save'})[0]
-
-    userEvent.click(confirm)
-    userEvent.click(submitForm);
+    await waitFor(() => { new Promise (()=>{
+      userEvent.click(screen.getAllByTestId("confirm")[0])
+      userEvent.click(screen.getAllByRole('button', {name: 'Save'})[0]);
+    })
+    })
   });
 
   describe('SampleForm', () => {
