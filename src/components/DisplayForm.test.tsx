@@ -180,7 +180,7 @@ describe('DisplayForm Snapshot', () => {
   })
 
 
-   it("should spy functions and states", () => {
+   it("should spy functions and states", async () => {
     const setRoomQuantity = jest.fn();
     const setUserStreetNum = jest.fn();
     const handleNewsletter = jest.fn();
@@ -218,7 +218,7 @@ describe('DisplayForm Snapshot', () => {
     handleClick.mockImplementation((extraName?: []) => [extraName, setExtraName]);
 
     
-    
+    await waitFor(() => { new Promise (()=>{
     const input =  screen.getAllByRole('spinbutton', {name : 'Room Quantity'})[0] as HTMLInputElement;
     userEvent.type(input, '1')
 
@@ -260,6 +260,8 @@ describe('DisplayForm Snapshot', () => {
   const input11 = screen.getAllByTestId('departureDate')[0] as HTMLInputElement;
   userEvent.type(input11, '2023-02-24T04:12')
   fireEvent.change(input11, { target: { value: "2023-03-24T04:12" } });
+    })
+  })
 
   // const input12 = screen.getAllByRole('combobox', {name : 'Multiple values'})[0] as HTMLInputElement;
   // userEvent.type(input12, 'booking');
