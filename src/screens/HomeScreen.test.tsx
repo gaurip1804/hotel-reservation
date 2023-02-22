@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, screen } from '@testing-library/react';
+import {render, screen, waitFor } from '@testing-library/react';
 import  HomeScreen  from './HomeScreen';
 import { Provider } from './../context/reservations';
 import '@testing-library/jest-dom';
@@ -141,10 +141,13 @@ test('Add record', () => {
         });
     });
 
-    test('testbAdd click', () => {
+    test('testbAdd click', async () => {
         render(<Provider><HomeScreen {...modalProps} /></Provider>);
         expect(screen.getAllByRole('button',{name: 'Add record'})[0]).toBeInTheDocument();
-      userEvent.click(screen.getAllByRole('button', {name: 'Add record'})[0]);
+        await waitFor(() => { new Promise (()=>{
+        userEvent.click(screen.getAllByRole('button', {name: 'Add record'})[0]);
+        })
+      })
     });
 
 });

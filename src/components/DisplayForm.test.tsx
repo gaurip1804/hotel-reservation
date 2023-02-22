@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen, act, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import  DisplayForm  from './DisplayForm';
 import { Provider } from './../context/reservations';
 import '@testing-library/jest-dom';
@@ -105,58 +105,79 @@ describe('DisplayForm Snapshot', () => {
        });
     
 
-    test('Input value should be equal email', () => {
+    test('Input value should be equal email', async() => {
       render(<Provider><DisplayForm {...props} /></Provider>);
+      await waitFor(() => { new Promise (()=>{
        const input =  screen.getAllByRole('textbox', {name : 'email'})[0] as HTMLInputElement;
         userEvent.type(input, 'hello@world.com')
        expect(input.value).toBe('hello@world.com'); 
+      })
+    })
      });
  
 
-  test('Input value should be equal Phone number', () => {
+  test('Input value should be equal Phone number', async() => {
     render(<Provider><DisplayForm {...props} /></Provider>);
+    await waitFor(() => { new Promise (()=>{
      const input =  screen.getAllByRole('spinbutton', {name : 'mobNum'})[0] as HTMLInputElement;
       userEvent.type(input, '123456789')
      expect(input.value).toBe('123456789'); 
+    })
+  })
    });
 
-   test('Input value should check confirm', () => {
+   test('Input value should check confirm', async() => {
     render(<Provider><DisplayForm {...props} /></Provider>);
+    await waitFor(() => { new Promise (()=>{
      const input =  screen.getAllByRole('checkbox', {name : 'confirm'})[0] as HTMLInputElement;
       userEvent.type(input, 'on')
      expect(input.value).toBe('on'); 
+    })
    });
+  })
 
-   test("should be able to onchange newsletter", () => {
+   test("should be able to onchange newsletter",async () => {
     render(<Provider><DisplayForm {...props} /></Provider>);
+    await waitFor(() => { new Promise (()=>{
     const input = screen.getAllByRole('checkbox', {name : 'newsletter'})[0] as HTMLInputElement;
 
     fireEvent.change(screen.getAllByRole('checkbox', {name : 'newsletter'})[0], { target: { value: 'on' } });
     expect(input.value).toBe('on');
+    })
+  })
    })
 
-    test("should be able to onchange reminder", () => {
+    test("should be able to onchange reminder", async () => {
       render(<Provider><DisplayForm {...props} /></Provider>);
+      await waitFor(() => { new Promise (()=>{
       const input = screen.getAllByRole('checkbox', {name : 'reminder'})[0] as HTMLInputElement;
   
       userEvent.type(input, 'on')
       expect(input.value).toBe('on');
+      })
+    })
   
   })
 
-   test('Input value should check payment button clicked',  () => {
+   test('Input value should check payment button clicked',  async() => {
     render(<Provider><DisplayForm {...props} /></Provider>);
+    await waitFor(() => { new Promise (()=>{
      const input =  screen.getAllByRole('radio', {name : 'Cash'})[0] as HTMLInputElement;
       userEvent.type(input, 'cash')
      expect(input.value).toBe('cash'); 
+    })
+  })
    });
 
-   test('Input value should check State/Country',  () => {
+   test('Input value should check State/Country', async () => {
     render(<Provider><DisplayForm {...props} /></Provider>);
+    await waitFor(() => { new Promise (()=>{
      const input =  screen.getAllByRole('combobox', {name : 'Country'})[0] as HTMLInputElement;
       userEvent.type(input, 'Andorra')
      expect(input.value).toBe('Andorra'); 
+    });
    });
+  })
 
 
    it("should spy functions and states", () => {
@@ -217,7 +238,6 @@ describe('DisplayForm Snapshot', () => {
     const input6 = screen.getAllByTestId('city')[0] as HTMLInputElement;
     userEvent.type(input6, 'Toronto')
     fireEvent.change(input6, { target: { value: "Toronto" } });
-  });
 
   const input7 = screen.getAllByTestId('zip')[0] as HTMLInputElement;
   userEvent.type(input7, 'Nu48866')
@@ -244,7 +264,5 @@ describe('DisplayForm Snapshot', () => {
 
   const input13 = screen.getAllByRole('button', {name : 'extras'})[0] as HTMLInputElement;
     userEvent.type(input13,"extraParking")
-});
-
- 
-  
+ })
+})
