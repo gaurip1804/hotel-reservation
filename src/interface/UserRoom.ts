@@ -18,13 +18,13 @@ export interface ICreateBooking {
 		state: string | null,
 		city: string
 	  },
-      extras: string[],
+    extras: string[],
 	  note: string,
-      reminder: boolean | true,
+    reminder: boolean | true,
 	  newsletter: boolean | true,
 	  confirm: boolean | true,
-      room: {
-		roomSize: string | undefined,
+    room: {
+		roomSize: string,
 		roomQuantity: number | 0
 	  },
       tags:string[]

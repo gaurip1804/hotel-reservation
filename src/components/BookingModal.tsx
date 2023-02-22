@@ -5,20 +5,17 @@ import {
 } from "@mui/material";
 import { bookModalStyle } from "./../helpers/styles";
 import {ICreateBooking} from '../interface/UserRoom';
-import EditUser from "../screens/EditUser";
-import AddUser from "../screens/AddUser";
 
-
+import DisplayForm from './DisplayForm';
 
 type TReview = {
   open : boolean
-  handleClose(): void
+  handleSubmit:(formData:any)=>void
   userDetails:ICreateBooking | undefined
+  handleClose():void
 }
 
-
-
-export const BookingModal:React.FC<TReview> = ({open, handleClose, userDetails }) => {
+const BookingModal:React.FC<TReview> = ({open, handleSubmit, userDetails, handleClose }) => {
   return (
     <Modal
       open={open}
@@ -26,13 +23,15 @@ export const BookingModal:React.FC<TReview> = ({open, handleClose, userDetails }
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       style={{ overflow: 'scroll' }}
+      data-testid="modal"
     >
+
       <Box sx={bookModalStyle} data-testid="find-me-in-jest">
-    {userDetails ? <EditUser handleSubmitEdit = {handleClose} userDetails = {userDetails} /> :
-     <AddUser handleSubmitEdit = {handleClose} />}
-        
+      <DisplayForm handleSubmit = {handleSubmit} userDetails = {userDetails} />
       </Box>
     </Modal>
   );
  
 };
+
+export default BookingModal;

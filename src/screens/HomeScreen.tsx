@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import UserReservationContext from '../context/reservations';
 import {ICreateBooking} from '../interface/UserRoom';
-import { BookingModal } from '../components/BookingModal';
+import  BookingModal  from '../components/BookingModal';
 import { DataGrid,GridRowId,  } from '@mui/x-data-grid';
 import dataColumns from './../data/dataColumns';
 import {GridActionsCellItem, GridToolbarContainer }from '@mui/x-data-grid-pro';
@@ -11,12 +11,16 @@ import {GridActionsCellItem, GridToolbarContainer }from '@mui/x-data-grid-pro';
  import Button from '@mui/material/Button';
 
 
- let arr:any[] = [];
 
- const HomeScreen: React.FC = () => {
-  const { reservations, deleteReservationById } =  useContext(UserReservationContext);
+ let arr:any[] = [];
+ type HomeScreenProps = {
+  children: React.ReactNode
+};
+
+ const HomeScreen: any = (props:HomeScreenProps) => {
+  const { reservations,  createReservation,editUserReservationById, deleteReservationById } =  useContext(UserReservationContext);
  
-  const abc =  {
+  const dataTableActions =  {
     field: 'actions',
     type: 'actions',
     headerName: 'Actions',
@@ -35,6 +39,7 @@ import {GridActionsCellItem, GridToolbarContainer }from '@mui/x-data-grid-pro';
         />,
         <GridActionsCellItem
           icon={<DeleteIcon />}
+          name = "delete"
           label="Delete"
          onClick={()=>handleDelete(user)}
           color="inherit"
@@ -44,7 +49,7 @@ import {GridActionsCellItem, GridToolbarContainer }from '@mui/x-data-grid-pro';
     },
   }
 
-  arr.push(...dataColumns, abc)
+  arr.push(...dataColumns, dataTableActions)
   const columns = arr;
   
 const [open, setOpen] = useState(false);
@@ -65,26 +70,33 @@ const handleEditClick = (user:any) => {
     window.location.reload();
 }
  
+const handleSubmit = (formData:any) => {
+         userDetails && userDetails !== undefined ? editUserReservationById(userDetails.id, formData) :  createReservation(formData);
+        handleClose();
+    }
+
+    
    
    const EditToolbar = () => {
     const handleClick = () => {
       setUsers(undefined)
       setOpen(true)
     }
+
     return (
-      <GridToolbarContainer>
-        <Button color="primary" startIcon={<AddIcon />} onClick = {handleClick} data-testid="trigger-me-in-jest">
+      <GridToolbarContainer> 
+        <Button color="primary" startIcon={<AddIcon />} onClick = {handleClick} data-testid="trigger-me-in-jest" name="addRecord">
           Add record
         </Button>
       </GridToolbarContainer>
     );
   }
     return(
-       <>  
+       <div data-testid="homeDiv">  
     <div style={{height : 100, background:'#F8A756', paddingTop: 30}}><h3>Reservation System</h3></div>
     <div style={{ height: 400, width: '100%' }}>
     
-     {reservations && 
+     {reservations &&
      <DataGrid
         rows={reservations}
         columns={columns}
@@ -97,10 +109,10 @@ const handleEditClick = (user:any) => {
  
  <div>
   
-    {open && <BookingModal open={open} handleClose={handleClose} userDetails = {userDetails}/>}
+    {open && <BookingModal data-testid="bookingModal" open={open}  userDetails = {userDetails} handleSubmit = {handleSubmit} handleClose={handleClose} />}
     </div>
    
-    </>
+    </div>
     )
 };
 

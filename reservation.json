@@ -83,6 +83,45 @@
       "newsletter": false,
       "confirm": true,
       "id": 2
+    },
+    {
+      "stay": {
+        "arrivalDate": "2023-02-25T04:01",
+        "departureDate": "2021-04-27T09:00"
+      },
+      "room": {
+        "roomSize": "presidential-suite",
+        "roomQuantity": 1
+      },
+      "firstName": "dffs",
+      "lastName": "sdf",
+      "email": "dfd@df.com",
+      "phone": "3445454",
+      "addressStreet": {
+        "streetName": "dfsd",
+        "streetNumber": 1
+      },
+      "addressLocation": {
+        "zipCode": "fe5tet5",
+        "state": "Angola",
+        "city": "dfsf"
+      },
+      "extras": [
+        "extraBreakfast"
+      ],
+      "payment": "cash",
+      "note": "",
+      "tags": [
+        "hotel",
+        "booking",
+        "labtest",
+        "angular",
+        "material"
+      ],
+      "reminder": true,
+      "newsletter": false,
+      "confirm": true,
+      "id": 3
     }
   ]
 }
