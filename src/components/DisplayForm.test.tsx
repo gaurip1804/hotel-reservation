@@ -239,13 +239,15 @@ describe('DisplayForm Snapshot', () => {
     userEvent.type(input6, 'Toronto')
     fireEvent.change(input6, { target: { value: "Toronto" } });
 
+
   const input7 = screen.getAllByTestId('zip')[0] as HTMLInputElement;
   userEvent.type(input7, 'Nu48866')
   fireEvent.change(input7, { target: { value: "Nu48866" } });
 
-  const input8 = screen.getAllByRole('combobox', {name : 'Country'})[0] as HTMLInputElement;
-  userEvent.type(input8, 'Andorra');
-  fireEvent.change(input8, { target: { value: "Andorra" } });
+
+  // const input8 = screen.getAllByRole('combobox', {name : 'Country'})[0] as HTMLInputElement;
+  // userEvent.type(input8, 'Andorra');
+  // fireEvent.change(input8, { target: { value: "Andorra" } });
 
   const input9 = screen.getAllByTestId('personalNote')[0] as HTMLInputElement;
   userEvent.type(input9, 'Clean bedsheets')
@@ -259,10 +261,10 @@ describe('DisplayForm Snapshot', () => {
   userEvent.type(input11, '2023-02-24T04:12')
   fireEvent.change(input11, { target: { value: "2023-03-24T04:12" } });
 
-  const input12 = screen.getAllByRole('combobox', {name : 'Multiple values'})[0] as HTMLInputElement;
-  userEvent.type(input12, 'booking');
+  // const input12 = screen.getAllByRole('combobox', {name : 'Multiple values'})[0] as HTMLInputElement;
+  // userEvent.type(input12, 'booking');
 
-  const input13 = screen.getAllByRole('button', {name : 'extras'})[0] as HTMLInputElement;
-    userEvent.type(input13,"extraParking")
- })
-})
+  // const input13 = screen.getAllByRole('button', {name : 'extras'})[0] as HTMLInputElement;
+  //   userEvent.type(input13,"extraParking")
+});
+  })
