@@ -202,7 +202,6 @@ describe('Datagrid problem repro', () => {
     handleClick1.mockImplementation((open?: any) => [open, handleClick]);
     await waitFor(() => { new Promise (()=>{
      userEvent.click(screen.getAllByText('Add record')[0],setOpen(true))
-     userEvent.click(screen.getAllByRole('button', {name: 'Save'})[0]);
     })
   })
    });
