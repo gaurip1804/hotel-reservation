@@ -184,7 +184,7 @@ describe('Datagrid problem repro', () => {
     expect(screen.getAllByRole('checkbox')[0]).toBeInTheDocument();
   });
 
-  it('should render spy functions', () => {
+  it('should render spy functions', async () => {
     const handleDelete = jest.fn();
     const handleEditClick = jest.fn();
     const handleClose = jest.fn();
@@ -200,7 +200,10 @@ describe('Datagrid problem repro', () => {
     handleClick1.mockImplementation((userDetails?: any) => [userDetails, setUsers]);
     handleClick1.mockImplementation((open?: any) => [open, handleClose]);
     handleClick1.mockImplementation((open?: any) => [open, handleClick]);
+    await waitFor(() => { new Promise (()=>{
      userEvent.click(screen.getAllByText('Add record')[0],setOpen(true))
      userEvent.click(screen.getAllByRole('button', {name: 'Save'})[0]);
+    })
+  })
    });
 });
