@@ -84,18 +84,24 @@ describe('DisplayForm Snapshot', () => {
   });
 
   describe('SampleForm', () => {
-    test('Input value should be equal first name', () => {
+    test('Input value should be equal first name', async () => {
        render(<Provider><DisplayForm {...props} /></Provider>);
+       await waitFor(() => { new Promise (()=>{
         const input =  screen.getAllByRole('textbox', {name : 'firstName'})[0] as HTMLInputElement;
          userEvent.type(input, 'hello ')
         expect(input.value).toBe('hello '); 
+      })
+      })
       });
 
-      test('Input value should be equal last name', () => {
+      test('Input value should be equal last name', async() => {
         render(<Provider><DisplayForm {...props} /></Provider>);
+        await waitFor(() => { new Promise (()=>{
          const input =  screen.getAllByRole('textbox', {name : 'lastName'})[0] as HTMLInputElement;
           userEvent.type(input, ' world')
          expect(input.value).toBe(' world'); 
+        })
+      })
        });
     
 
